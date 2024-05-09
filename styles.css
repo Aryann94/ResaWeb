@@ -1,0 +1,107 @@
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #242A28;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar {
+  background-color: transparent;
+  width: 100%;
+  height: 80px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  padding: 0 100px;
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-link .active {
+  color: #22E49F;
+  text-decoration: none;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 700;
+}
+
+.nav-link a {
+  color: white;
+  text-decoration: none;
+  font-family: 'Satoshi', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  transition: color 0.15s ease-in;
+}
+
+.nav-link a:hover {
+  color: #22E49F;
+}
+
+.nav-logo {
+  justify-self: center;
+}
+
+.fa-bicycle {
+  font-size: 2rem;
+}
+
+.nav-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-buttons button{
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-buttons a i {
+  position: relative;
+}
+
+.nav-buttons  a i::after {
+  content: "0";
+  background-color: #22E49F;
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  border: 2px solid #242A28;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #242A28;
+  position: absolute;
+  top: 8px;
+  left: 7px;
+}
+
+.fa-magnifying-glass {
+  color: white;
+}
+
+.fa-magnifying-glass:hover {
+  color: #C6C6C6;
+}
+
+.fa-bag-shopping {
+  color: white;
+  transition: color 0.10s ease-in;
+}
+
+.fa-bag-shopping:hover {
+  color: #C6C6C6;
+}
