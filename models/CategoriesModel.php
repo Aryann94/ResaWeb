@@ -15,7 +15,7 @@ class CategoriesModel
         if(empty($filter)){
             $sql = "SELECT * FROM categorie";
         }else{
-            $sql = "SELECT * FROM categorie WHERE name LIKE '%$filter%'";
+            $sql = "SELECT * FROM categorie WHERE nom_categorie LIKE '%$filter%'";
         }
 
         $stmt = $mysqli->stmt_init();

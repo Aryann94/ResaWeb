@@ -11,7 +11,8 @@ if ($path === "") {
 }
 
 $allowedPages = [
-    "index" => "view:index"
+    "index" => "view:index",
+    "velo" => "view:velo"
 ];
 
 function showView($view)
