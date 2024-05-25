@@ -12,7 +12,9 @@ if ($path === "") {
 
 $allowedPages = [
     "index" => "view:index",
-    "velo" => "view:velo"
+    "velo" => "view:velo",
+    "panier" => "view:panier",
+    "check_availability" => "controller:check_availability"
 ];
 
 function showView($view)

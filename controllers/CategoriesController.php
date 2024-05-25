@@ -9,7 +9,7 @@ class CategoriesController{
     private string $filter;
 
     /**
-     * QuizController constructor.
+     * CategoriesController constructor.
      * @param string|null $search
      */
     function __construct(?string $search = null) { // search is a string and is nullable

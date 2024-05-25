@@ -102,4 +102,27 @@ class VelosModel
         $stmt->close();
         return $velos;
     }
+
+    public function getVeloDetails($veloId) {
+        $mysqli = Database::getInstance();
+        $sql = "SELECT v.*, c.nom_categorie, i.URL, i.alt 
+                FROM velo v 
+                LEFT JOIN categorie c ON v.id_categorie = c.id_categorie
+                LEFT JOIN image i ON v.id_velo = i.velo_id 
+                WHERE v.id_velo = ?";
+    
+        $stmt = $mysqli->stmt_init();
+        if (!$stmt->prepare($sql)) {
+            error_log("Fail during preparation of statement\n");
+            exit();
+        }
+    
+        $stmt->bind_param("i", $veloId);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+        $stmt->close();
+        return $result;
+    }
+    
+
 }

@@ -31,4 +31,11 @@ class VelosController{
     function getNewVelos() {
         return $this->velosModel->getNewVelos();
     }
+
+    function getVeloDetails($veloId) {
+    return $this->velosModel->getVeloDetails($veloId);
+    }
+    // Récupérer le nom de la catégorie
+
+
 }
