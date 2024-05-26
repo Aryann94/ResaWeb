@@ -4,52 +4,59 @@ require_once '../models/Database.php';
 /**
  * Class Users : Use the Database class to manage a user for register, login and settings pages
  */
-class VelosModel
-{
     /**
      * @param string $filter for show only categories with a name like $filter, if $filter is empty show all categories
      *  @return array return all categories
      */
-    public function getAllVelos(string $filter, string $sort){
-        $mysqli = Database::getInstance();
-
-        if(empty($filter))
-            $sql = "SELECT v.*, i.URL, i.alt
-                    FROM velo v
-                    LEFT JOIN image i ON v.id_velo = i.velo_id";
-        else{
-            $filter = '%' . $filter . '%';
+    class VelosModel {
+        public function getAllVelos(string $filter = "", string $sort = "", string $categorie = "") {
+            $mysqli = Database::getInstance();
+    
             $sql = "SELECT v.*, i.URL, i.alt
                     FROM velo v
                     LEFT JOIN image i ON v.id_velo = i.velo_id
-                    WHERE v.modele LIKE ?";
+                    WHERE 1=1";
+    
+            $params = [];
+            $types = "";
+    
+            if (!empty($filter)) {
+                $filter = '%' . $filter . '%';
+                $sql .= " AND v.modele LIKE ?";
+                $params[] = $filter;
+                $types .= "s";
+            }
+    
+            if (!empty($categorie)) {
+                $sql .= " AND v.id_categorie = ?";
+                $params[] = $categorie;
+                $types .= "i"; // assuming id_categorie is an integer
+            }
+    
+            if (!empty($sort)) {
+                $sql .= " ORDER BY v.prix_par_jour " . ($sort === 'asc' ? 'ASC' : 'DESC');
+            }
+    
+            $stmt = $mysqli->stmt_init();
+            if (!$stmt->prepare($sql)) {
+                error_log("Fail during preparation of statement\n");
+                exit();
+            }
+    
+            if (!empty($params)) {
+                $stmt->bind_param($types, ...$params);
+            }
+    
+            $stmt->execute();
+            $results = $stmt->get_result();
+            if (!$results) {
+                error_log("Error in query: " . $sql . "\n");
+                exit();
+            }
+            $velos = $results->fetch_all(MYSQLI_ASSOC);
+            $stmt->close();
+            return $velos;
         }
-
-
-        if (!empty($sort)) {
-            $sql .= " ORDER BY v.prix_par_jour " . ($sort === 'asc' ? 'ASC' : 'DESC');
-        }
-
-        $stmt = $mysqli->stmt_init();
-        if (!$stmt->prepare($sql)) {
-            error_log("Fail during preparation of statement\n");
-            exit();
-        }
-
-        if (!empty($filter)) {
-            $stmt->bind_param("s", $filter);
-        }
-
-        $stmt->execute();
-        $results = $stmt->get_result();
-        if (!$results) {
-            error_log("Error in query : " . $sql . "\n");
-            exit();
-        }
-        $velos = $results->fetch_all(MYSQLI_ASSOC);
-        $stmt->close();
-        return $velos;
-    }
 
        /**
      * Récupère tous les vélos marqués comme meilleurs produits.

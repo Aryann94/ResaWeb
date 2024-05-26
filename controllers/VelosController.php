@@ -8,22 +8,24 @@ class VelosController{
     private VelosModel $velosModel;
     private string $filter;
     private string $sort;
+    private string $categorie;
 
     /**
      * QuizController constructor.
      * @param string|null $search
      */
-    function __construct(?string $search = null, ?string $sort = null){
+    function __construct(?string $search = null, ?string $sort = null, ?string $categorie = null) {
         $this->velosModel = new VelosModel();
-        $this->filter = ($search != null) ? $search : "";
+        $this->filter = $search ?? "";
         $this->sort = $sort ?? "";
+        $this->categorie = $categorie ?? "";
     }
 
     /**
      * @return array
      */
-    function getAllVelos(){
-        return $this->velosModel->getAllVelos($this->filter, $this->sort);
+    function getAllVelos() {
+        return $this->velosModel->getAllVelos($this->filter, $this->sort, $this->categorie);
     }
 
     function getBestVelos() {

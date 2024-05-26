@@ -16,7 +16,9 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 require_once '../controllers/VelosController.php';
 
-
+$filter = isset($_GET['search']) ? $_GET['search'] : null;
+$sort = isset($_GET['sort']) ? $_GET['sort'] : null;
+$categorie = isset($_GET['categorie']) ? $_GET['categorie'] : null;
 ?>
 
 
@@ -32,15 +34,10 @@ require_once '../controllers/VelosController.php';
           <button type="submit">Rechercher</button>
       </form>
       <?php
-
-          // Get filter from URL if available
-          $filter = isset($_GET['search']) ? $_GET['search'] : null;
-          $sort = isset($_GET['sort']) ? $_GET['sort'] : null;
-
           echo "<h2>Recherche: " . ($filter ? htmlspecialchars($filter) : "Tous les vélos") . "</h2>";
 
           // Instantiate the VelosController and get velos
-          $velosControl = new VelosController($filter, $sort);
+          $velosControl = new VelosController($filter, $sort, $categorie);
           $allVelos = $velosControl->getAllVelos();
 
           // Check if velos were found and display them

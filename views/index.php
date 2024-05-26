@@ -96,32 +96,40 @@ header("Pragma: no-cache");
       ?>
     </div>
 
-    <div class="">
+    <div class="categorie-container">
+    <div id="tiles"></div>
+
     <?php
-    // Controller function is probably to set up the environment or includes
     showController("CategoriesController");
 
-    // Get filter from URL if available
     $filter = isset($_GET['search']) ? $_GET['search'] : null;
 
-    // Instantiate the CategoriesController and get categories
     $categoriesControl = new CategoriesController();
     $allCategories = $categoriesControl->getAllCategories($filter);
 
-    // Check if categories were found and display them
+    echo "<div class='categorie'>";
     if (count($allCategories) > 0) {
-      foreach ($allCategories as $category) {
-        echo "<h1>" . htmlspecialchars($category['nom_categorie']) . "</h1>";
-        echo "<p>" . htmlspecialchars($category['description_categorie']) . "</p>";
-        echo "<img src='public/images/" . htmlspecialchars($category['image_categorie']) . ".png' alt='Image de la catégorie'>";
-      }
-    } else {
-      echo "<h1>Aucune catégorie trouvée</h1>";
-    }
+        foreach ($allCategories as $category) {
+          echo "<a class='categorie-card' href='catalogue?categorie=" . urlencode($category['id_categorie']) . "' class='categorie-card-link'>";
+            echo "<div class='categorie-text'>";
+            echo "<h3>" . htmlspecialchars($category['nom_categorie']) . "</h1>";
+            echo "<p>" . htmlspecialchars($category['description_categorie']) . "</p>";
+            echo "</div>";
+            echo "<div class='categorie-img'>";
+            echo "<img src='public/images/" . htmlspecialchars($category['image_categorie']) . ".png' alt='Image de la catégorie'>";
+            echo "</div>";
+            echo "</a>";
+          }
+        } else {
+          echo "<h1>Aucune catégorie trouvée</h1>";
+        }
+        echo "</div>";
     ?>
-  </div>
+</div>
+
   
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
   <script>
         // Fonction pour trier les vélos en JavaScript
         function sortVelos(order) {
@@ -141,6 +149,79 @@ header("Pragma: no-cache");
 
             velos.forEach(velo => veloList.appendChild(velo));
         }
+        
+
+        const wrapper = document.getElementById("tiles");
+      const categorieContainer = document.querySelector(".categorie-container");
+      const tileWidth = 200;
+      const tileHeight = 200;
+
+      // Calculer le nombre de colonnes et de lignes en fonction de la taille de la .categorie-container
+      let columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
+      let rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
+
+      const colors = [
+        "hsl(159, 27%, 16%)",
+        "hsl(158, 27%, 16%)",
+        "hsl(159, 78%, 11%)",
+        "hsl(156, 6%, 10%)"
+      ];
+
+      let count = -1;
+
+      const handleOnClick = index => {
+        count = count + 1;
+
+        anime({
+          targets: ".tile",
+          backgroundColor: colors[count % (colors.length - 1)],
+          delay: anime.stagger(50, {
+            grid: [columns, rows],
+            from: index
+          })
+        })
+      }
+
+      const createTile = (index) => {
+          const tile = document.createElement("div");
+          tile.classList.add("tile");
+          tile.onclick = e => handleOnClick(index);
+          return tile;
+      }
+
+      const createTiles = () => {
+          for (let i = 0; i < columns * rows; i++) {
+              wrapper.appendChild(createTile(i));
+          }
+      }
+
+      const createGrid = () => {
+          // Nettoyer le contenu existant de la grille
+          wrapper.innerHTML = "";
+
+          // Mettre à jour le nombre de colonnes et de lignes en fonction de la taille de .categorie-container
+          columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
+          rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
+
+          // Définir les propriétés de la grille CSS personnalisées
+          wrapper.style.setProperty("--columns", columns);
+          wrapper.style.setProperty("--rows", rows);
+
+          // Créer les tuiles dans la grille mise à jour
+          createTiles();
+        }
+
+        // Appeler createGrid une fois pour créer la grille initiale
+        createGrid();
+
+        // Appeler createGrid à nouveau lors du redimensionnement de la fenêtre pour mettre à jour la grille en conséquence
+        window.addEventListener("resize", createGrid);
+
+        // Déclencher les clics de manière aléatoire à des intervalles réguliers
+        setInterval(() => {
+          const randomIndex = Math.floor(Math.random() * (columns * rows));
+          handleOnClick(randomIndex);
+        }, 2000); // Changement de tuile toutes les 2 secondes (2000 millisecondes)
     </script>
 </body>
 </html>

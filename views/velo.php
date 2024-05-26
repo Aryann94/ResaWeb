@@ -1,5 +1,10 @@
 <?php
-showView("header");
+$current_page = 'index';
+
+include 'header.php';
+?>
+
+<?php
 
 // Disable caching
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
