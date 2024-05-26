@@ -7,21 +7,23 @@ include_once '../models/VelosModel.php';
 class VelosController{
     private VelosModel $velosModel;
     private string $filter;
+    private string $sort;
 
     /**
      * QuizController constructor.
      * @param string|null $search
      */
-    function __construct(?string $search = null) { // search is a string and is nullable
+    function __construct(?string $search = null, ?string $sort = null){
         $this->velosModel = new VelosModel();
         $this->filter = ($search != null) ? $search : "";
+        $this->sort = $sort ?? "";
     }
 
     /**
      * @return array
      */
     function getAllVelos(){
-        return $this->velosModel->getAllVelos($this->filter);
+        return $this->velosModel->getAllVelos($this->filter, $this->sort);
     }
 
     function getBestVelos() {
@@ -39,3 +41,5 @@ class VelosController{
 
 
 }
+
+?>

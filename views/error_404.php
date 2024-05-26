@@ -12,4 +12,4 @@
     </div>
 </div>
 
-<?php showView("footer"); ?>
+<?php?>

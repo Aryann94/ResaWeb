@@ -50,3 +50,5 @@ class Database
         self::$instance = null;
     }
 }
+
+?>

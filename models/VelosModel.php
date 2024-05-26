@@ -10,19 +10,24 @@ class VelosModel
      * @param string $filter for show only categories with a name like $filter, if $filter is empty show all categories
      *  @return array return all categories
      */
-    public function getAllVelos(string $filter = "")
-    {
+    public function getAllVelos(string $filter, string $sort){
         $mysqli = Database::getInstance();
 
-        if (empty($filter)) {
-            $sql = "SELECT v.*, i.URL, i.alt 
-                    FROM velo v 
+        if(empty($filter))
+            $sql = "SELECT v.*, i.URL, i.alt
+                    FROM velo v
                     LEFT JOIN image i ON v.id_velo = i.velo_id";
-        } else {
-            $sql = "SELECT v.*, i.URL, i.alt 
-                    FROM velo v 
-                    LEFT JOIN image i ON v.id_velo = i.velo_id 
-                    WHERE v.id_velo LIKE ?";
+        else{
+            $filter = '%' . $filter . '%';
+            $sql = "SELECT v.*, i.URL, i.alt
+                    FROM velo v
+                    LEFT JOIN image i ON v.id_velo = i.velo_id
+                    WHERE v.modele LIKE ?";
+        }
+
+
+        if (!empty($sort)) {
+            $sql .= " ORDER BY v.prix_par_jour " . ($sort === 'asc' ? 'ASC' : 'DESC');
         }
 
         $stmt = $mysqli->stmt_init();
@@ -126,3 +131,5 @@ class VelosModel
     
 
 }
+
+?>

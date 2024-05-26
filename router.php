@@ -14,7 +14,8 @@ $allowedPages = [
     "index" => "view:index",
     "velo" => "view:velo",
     "panier" => "view:panier",
-    "check_availability" => "controller:check_availability"
+    "check_availability" => "controller:check_availability",
+    "catalogue" => "view:catalogue"
 ];
 
 function showView($view)
@@ -39,3 +40,6 @@ if ($explodedTarget[0] === "view")
     showView($explodedTarget[1]);
 else
     showController($explodedTarget[1]);
+
+
+?>

@@ -24,3 +24,5 @@ class CategoriesController{
         return $this->categoriesModel->getAllCategories($this->filter);
     }
 }
+
+?>
