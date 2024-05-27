@@ -198,3 +198,10 @@
   outline: 1px solid white;
   opacity: 0.5;
 }
+
+.test {
+  background-color: #22E49F;
+  color: black;
+  padding: 16px 32px;
+  text-transform: uppercase;
+}

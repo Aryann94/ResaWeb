@@ -1,3 +1,4 @@
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.4.1/build/spline-viewer.js"></script>
 <?php
 $current_page = 'index';
 
@@ -31,7 +32,18 @@ header("Pragma: no-cache");
 ?>
 
   <main>
+  <section class="hero" style="position: relative; transform: translateY(-300px); padding-left: 90px;">
+    <spline-viewer url="https://prod.spline.design/D9km3KuSiVg5jNeH/scene.splinecode"></spline-viewer>
+    <div style="position: absolute; top: 95%; right: 0; width: 160px; height: 100px; background-color: #242A28; z-index: 9999999;"></div>
+    <div style="position: absolute; top: 48%; left: 50%;  transform: translate(-50%, -50%); width: 310px; height: 310px; background: radial-gradient(circle, #22E49F, #6DA0C1); filter: blur(250px); z-index: -3;"></div>
+    <img src="public/images/SwiftText.svg" style="position: absolute; top: 48%; left: 50%;  transform: translate(-50%, -50%); z-index: -2;" />
+    <h1 style="position: absolute; top: 75%; left: 50%;  transform: translate(-50%, -50%); font-size: 3.813rem;"> Roulez vite, Roules bien.</h1>
+    <p style="position: absolute; top: 82%; left: 50%;  transform: translate(-50%, -50%);">Explorez la Ville en toute Facilité avec nos Vélos Fiables et Écologiques.</p>
+    <a style="position: absolute; top: 90%; left: 50%;  transform: translate(-50%, -50%);background-color: #22E49F; color: black; padding: 16px 32px; text-transform: uppercase; text-decoration: none; font-weight: 700; border-radius: 12px;" href="">Découvrez Nos Modèles</a>
+  </section>
 
+
+  <section class="main-product">
   <div class="product-container">
       <h2>Meilleurs Produits</h2>
       <?php
@@ -95,8 +107,10 @@ header("Pragma: no-cache");
         echo "</a>";
       ?>
     </div>
+    </section>
 
-    <div class="categorie-container">
+
+    <section class="categorie-container">
     <div id="tiles"></div>
 
     <?php
@@ -125,7 +139,7 @@ header("Pragma: no-cache");
         }
         echo "</div>";
     ?>
-</div>
+</section>
 
   
   </main>
