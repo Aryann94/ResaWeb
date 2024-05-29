@@ -1,4 +1,13 @@
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.4.1/build/spline-viewer.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/split-type"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script></script>
+
+
+
+
 <?php
 $current_page = 'index';
 
@@ -41,6 +50,13 @@ header("Pragma: no-cache");
     <p style="position: absolute; top: 82%; left: 50%;  transform: translate(-50%, -50%);">Explorez la Ville en toute Facilité avec nos Vélos Fiables et Écologiques.</p>
     <a style="position: absolute; top: 90%; left: 50%;  transform: translate(-50%, -50%);background-color: #22E49F; color: black; padding: 16px 32px; text-transform: uppercase; text-decoration: none; font-weight: 700; border-radius: 12px;" href="">Découvrez Nos Modèles</a>
   </section>
+
+<!-- Your text element here. For example: -->
+<div class="info">
+  <img src="public/images/logoBig.svg" alt="">
+  <p class="split-word">Découvrez notre passion pour le vélo et notre engagement pour un avenir plus vert. <br>Que vous soyez passionné de VTT, de vélo de route, urbain ou à assistance électrique, Swift a ce qu'il vous faut.</p>
+  <a class="split-word" href="#">en savoir plus &nbsp;&#8250;</a>
+</div>
 
 
   <section class="main-product">
@@ -139,103 +155,139 @@ header("Pragma: no-cache");
         }
         echo "</div>";
     ?>
-</section>
+  </section>
 
   
   </main>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
   <script>
-        // Fonction pour trier les vélos en JavaScript
-        function sortVelos(order) {
-            const veloList = document.getElementById('velo-list');
-            const velos = Array.from(veloList.getElementsByClassName('product-card'));
+    // Fonction pour trier les vélos en JavaScript
+function sortVelos(order) {
+  const veloList = document.getElementById('velo-list');
+  const velos = Array.from(veloList.getElementsByClassName('product-card'));
 
-            velos.sort((a, b) => {
-                const priceA = parseFloat(a.getAttribute('data-price'));
-                const priceB = parseFloat(b.getAttribute('data-price'));
+  velos.sort((a, b) => {
+      const priceA = parseFloat(a.getAttribute('data-price'));
+      const priceB = parseFloat(b.getAttribute('data-price'));
 
-                if (order === 'asc') {
-                    return priceA - priceB;
-                } else {
-                    return priceB - priceA;
-                }
-            });
-
-            velos.forEach(velo => veloList.appendChild(velo));
-        }
-        
-
-        const wrapper = document.getElementById("tiles");
-      const categorieContainer = document.querySelector(".categorie-container");
-      const tileWidth = 200;
-      const tileHeight = 200;
-
-      // Calculer le nombre de colonnes et de lignes en fonction de la taille de la .categorie-container
-      let columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
-      let rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
-
-      const colors = [
-        "hsl(159, 27%, 16%)",
-        "hsl(158, 27%, 16%)",
-        "hsl(159, 78%, 11%)",
-        "hsl(156, 6%, 10%)"
-      ];
-
-      let count = -1;
-
-      const handleOnClick = index => {
-        count = count + 1;
-
-        anime({
-          targets: ".tile",
-          backgroundColor: colors[count % (colors.length - 1)],
-          delay: anime.stagger(50, {
-            grid: [columns, rows],
-            from: index
-          })
-        })
+      if (order === 'asc') {
+          return priceA - priceB;
+      } else {
+          return priceB - priceA;
       }
+  });
 
-      const createTile = (index) => {
-          const tile = document.createElement("div");
-          tile.classList.add("tile");
-          tile.onclick = e => handleOnClick(index);
-          return tile;
-      }
+  velos.forEach(velo => veloList.appendChild(velo));
+}
 
-      const createTiles = () => {
-          for (let i = 0; i < columns * rows; i++) {
-              wrapper.appendChild(createTile(i));
-          }
-      }
 
-      const createGrid = () => {
-          // Nettoyer le contenu existant de la grille
-          wrapper.innerHTML = "";
+const wrapper = document.getElementById("tiles");
+const categorieContainer = document.querySelector(".categorie-container");
+const tileWidth = 200;
+const tileHeight = 200;
 
-          // Mettre à jour le nombre de colonnes et de lignes en fonction de la taille de .categorie-container
-          columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
-          rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
+// Calculer le nombre de colonnes et de lignes en fonction de la taille de la .categorie-container
+let columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
+let rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
 
-          // Définir les propriétés de la grille CSS personnalisées
-          wrapper.style.setProperty("--columns", columns);
-          wrapper.style.setProperty("--rows", rows);
+const colors = [
+"hsl(159, 27%, 16%)",
+"hsl(158, 27%, 16%)",
+"hsl(159, 78%, 11%)",
+"hsl(156, 6%, 10%)"
+];
 
-          // Créer les tuiles dans la grille mise à jour
-          createTiles();
-        }
+let count = -1;
 
-        // Appeler createGrid une fois pour créer la grille initiale
-        createGrid();
+const handleOnClick = index => {
+count = count + 1;
 
-        // Appeler createGrid à nouveau lors du redimensionnement de la fenêtre pour mettre à jour la grille en conséquence
-        window.addEventListener("resize", createGrid);
+anime({
+targets: ".tile",
+backgroundColor: colors[count % (colors.length - 1)],
+delay: anime.stagger(50, {
+  grid: [columns, rows],
+  from: index
+})
+})
+}
 
-        // Déclencher les clics de manière aléatoire à des intervalles réguliers
-        setInterval(() => {
-          const randomIndex = Math.floor(Math.random() * (columns * rows));
-          handleOnClick(randomIndex);
-        }, 2000); // Changement de tuile toutes les 2 secondes (2000 millisecondes)
-    </script>
+const createTile = (index) => {
+const tile = document.createElement("div");
+tile.classList.add("tile");
+tile.onclick = e => handleOnClick(index);
+return tile;
+}
+
+const createTiles = () => {
+for (let i = 0; i < columns * rows; i++) {
+    wrapper.appendChild(createTile(i));
+}
+}
+
+const createGrid = () => {
+// Nettoyer le contenu existant de la grille
+wrapper.innerHTML = "";
+
+// Mettre à jour le nombre de colonnes et de lignes en fonction de la taille de .categorie-container
+columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
+rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
+
+// Définir les propriétés de la grille CSS personnalisées
+wrapper.style.setProperty("--columns", columns);
+wrapper.style.setProperty("--rows", rows);
+
+// Créer les tuiles dans la grille mise à jour
+createTiles();
+}
+
+// Appeler createGrid une fois pour créer la grille initiale
+createGrid();
+
+// Appeler createGrid à nouveau lors du redimensionnement de la fenêtre pour mettre à jour la grille en conséquence
+window.addEventListener("resize", createGrid);
+
+// Déclencher les clics de manière aléatoire à des intervalles réguliers
+setInterval(() => {
+const randomIndex = Math.floor(Math.random() * (columns * rows));
+handleOnClick(randomIndex);
+}, 2000); // Changement de tuile toutes les 2 secondes (2000 millisecondes)
+
+
+let typeSplit;
+
+// Split the text up
+function runSplit() {
+typeSplit = new SplitType(".split-word", {
+  types: "words" // Split the text into words
+});
+createAnimation();
+}
+
+runSplit();
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
+
+// Create staggered animation
+function createAnimation() {
+let words = document.querySelectorAll(".word");
+
+let tl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".split-word",
+    start: "top center",
+    end: "bottom center",
+    scrub: 1
+  }
+});
+
+tl.to(words, {
+  opacity: 1,
+  duration: 1,
+  stagger: 0.5
+});
+}
+  </script>
 </body>
 </html>
