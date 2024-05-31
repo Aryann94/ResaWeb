@@ -1,5 +1,9 @@
+.main-product {
+  padding: 104px;
+}
+
 .product_container {
-  margin: 200px 0;
+  padding: 200px 0;
   width: 100%;
 }
 
@@ -7,6 +11,7 @@
   display: flex;
   gap: 2rem;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 .product-container .product a {
@@ -68,6 +73,46 @@
   align-items: center;
   flex-direction: row;
 }
+
+.link-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.link-container a {
+  text-decoration: none;
+  color: #22E49F;
+  font-weight: 700;
+}
+
+.btn-container {
+  display: flex;
+  gap: 16px;
+}
+
+.tab-button {
+  background-color: transparent;
+  border: 1px solid #22E49F;
+  color: #22E49F;
+  padding: 16px 32px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  background-color: #22E49F;
+  color: #242A28;
+}
+
+
+
+
+
+
 
 
 
@@ -201,6 +246,14 @@
 }
 
 
+
+
+
+
+
+
+
+
 .info {
   background-color: #2D8263;
   width: 100%;
@@ -235,3 +288,158 @@
   position: relative;
   z-index: 10;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* https://codepen.io/jh3y/pen/jOdmWeK */
+
+.ecology-container {
+  min-height: 100vh;
+}
+
+.ecology-container .main-section {
+  width: 100%;
+}
+
+.ecology-container .section {
+  height: 100vh;
+}
+
+.ecology-container .main-section > .section {
+  height: 80vh;
+  display: grid;
+  place-items: center;
+  position: sticky;
+  top: 0;
+}
+
+.ecology-container h3 {
+  font-size: clamp(2rem, 4vw + 1rem, 6rem);
+  background: linear-gradient(#22E49F, #2D8263);
+  -webkit-background-clip: text;
+  background-clip: text;
+  font-weight: 700;
+  color: transparent;
+  animation: scale-down linear both;
+  animation-timeline: scroll();
+  animation-range: 0 50vh;
+}
+
+@keyframes scale-down {
+  to { 
+      transform: scale(0.75); 
+  }
+}
+
+.ecology-container .content {
+  background: #333D39;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  transform: scale(0.95);
+}
+
+  .ecology-container .content {
+      view-timeline: --content;
+      animation: grow linear both;
+      animation-timeline: scroll();
+      animation-range: 0 50vh;
+  }
+
+@keyframes grow {
+  to { 
+      transform: scale(1); 
+  }
+}
+
+.ecology-container .content svg {
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  top: 0;
+  overflow: visible !important;
+  z-index: -1;
+}
+
+.ecology-container .content svg path {
+  stroke-width: clamp(2rem, 2vw, 4rem);
+}
+
+@media only screen and (orientation: portrait) {
+  .ecology-container .content svg {
+      display: none;
+  }
+}
+
+.ecology-container .backers path {
+  stroke: hsl(0, 0%, 50%);
+}
+
+.ecology-container .fillers path {
+  stroke: hsl(0, 100%, 50% / 1);
+}
+
+.ecology-container .fillers path:nth-of-type(1) {
+  --len: 8620;
+  stroke: hsl(140, 80%, 60%);
+}
+
+.ecology-container .fillers path:nth-of-type(2) {
+  --len: 7200;
+  stroke: hsl(140, 90%, 60%);
+}
+
+.ecology-container .fillers path:nth-of-type(3) {
+  --len: 7952;
+  stroke: hsl(140, 90%, 50%);
+}
+
+.ecology-container .fillers path {
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+}
+
+  .ecology-container .fillers path {
+      animation: fill linear both;
+      animation-timeline: --content;
+      animation-range: entry-crossing -38% exit 12%;
+  }
+
+@keyframes fill {
+  to { 
+      stroke-dashoffset: 0; 
+  }
+}
+
+.ecology-container .content .section {
+  display: grid;
+  align-content: center;
+  padding: 0 6rem;
+}
+
+.ecology-container .section span {
+  font-size: clamp(2rem, 4vw + 1rem, 4rem);
+  color: #22E49F;
+  width: 25%;
+  white-space: nowrap;
+}
+
+.ecology-container .section:nth-of-type(3), .section:nth-of-type(4) {
+  justify-items: end;
+}
+
+
+
+

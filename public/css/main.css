@@ -19,7 +19,10 @@ body {
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   padding: 0 100px;
-  position: relative;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  z-index: 1000;
 }
 
 .nav-link {

@@ -3,7 +3,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/split-type"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 
 
 
@@ -46,7 +47,7 @@ header("Pragma: no-cache");
     <div style="position: absolute; top: 95%; right: 0; width: 160px; height: 100px; background-color: #242A28; z-index: 9999999;"></div>
     <div style="position: absolute; top: 48%; left: 50%;  transform: translate(-50%, -50%); width: 310px; height: 310px; background: radial-gradient(circle, #22E49F, #6DA0C1); filter: blur(250px); z-index: -3;"></div>
     <img src="public/images/SwiftText.svg" style="position: absolute; top: 48%; left: 50%;  transform: translate(-50%, -50%); z-index: -2;" />
-    <h1 style="position: absolute; top: 75%; left: 50%;  transform: translate(-50%, -50%); font-size: 3.813rem;"> Roulez vite, Roules bien.</h1>
+    <h1 style="position: absolute; top: 75%; left: 50%;  transform: translate(-50%, -50%); font-size: 3.813rem;"> Roulez vite, Roulez bien.</h1>
     <p style="position: absolute; top: 82%; left: 50%;  transform: translate(-50%, -50%);">Explorez la Ville en toute Facilité avec nos Vélos Fiables et Écologiques.</p>
     <a style="position: absolute; top: 90%; left: 50%;  transform: translate(-50%, -50%);background-color: #22E49F; color: black; padding: 16px 32px; text-transform: uppercase; text-decoration: none; font-weight: 700; border-radius: 12px;" href="">Découvrez Nos Modèles</a>
   </section>
@@ -58,72 +59,76 @@ header("Pragma: no-cache");
   <a class="split-word" href="#">en savoir plus &nbsp;&#8250;</a>
 </div>
 
-
-  <section class="main-product">
+<section class="main-product">
+  <div class="link-container">
+    <div class="btn-container">
+      <button onclick="showNewProducts()" id="newButton" class="tab-button active">Nouveautés</button>
+      <button onclick="showBestProducts()" id="bestButton" class="tab-button">Meilleurs produits</button>
+    </div>
+    <a href="/resaweb/catalogue"">Voir tout&nbsp;&#8250;</a>
+    </div>
   <div class="product-container">
-      <h2>Meilleurs Produits</h2>
+    <div id="best-products" class="product">
       <?php
       $bestVelos = $velosControl->getBestVelos();
 
-      echo "<div class='product'>";
       if (count($bestVelos) > 0) {
         foreach ($bestVelos as $velo) {
           echo "<a href='velo?id_velo=" . $velo['id_velo'] . "' class='product-link'>";
-            echo "<div class='product-card'>";
-              if (!empty($velo['URL'])) {
-                echo "<div class='img'>";
-                  echo "<img src='" . htmlspecialchars($velo['URL']) . "' alt='" . htmlspecialchars($velo['alt']) . "'>";
-                echo "</div>";
-              }
-              echo "<div class='product-text'>";
-                echo "<div>";
-                  echo "<p>" . htmlspecialchars($velo['modele']) . "</p>";
-                  echo "<p>" . htmlspecialchars($velo['prix_par_jour']) . "€ / J</p>";
-                echo "</div>";
-                echo "<p>" . htmlspecialchars(shortenDescription($velo['description_velo'])) . "</p>";
-              echo "</div>";
+          echo "<div class='product-card'>";
+          if (!empty($velo['URL'])) {
+            echo "<div class='img'>";
+            echo "<img src='" . htmlspecialchars($velo['URL']) . "' alt='" . htmlspecialchars($velo['alt']) . "'>";
             echo "</div>";
           }
-        } else {
-          echo "<p>Aucun meilleur produit trouvé</p>";
+          echo "<div class='product-text'>";
+          echo "<div>";
+          echo "<p>" . htmlspecialchars($velo['modele']) . "</p>";
+          echo "<p>" . htmlspecialchars($velo['prix_par_jour']) . "€ / J</p>";
+          echo "</div>";
+          echo "<p>" . htmlspecialchars(shortenDescription($velo['description_velo'])) . "</p>";
+          echo "</div>";
+          echo "</div>";
+          echo "</a>";
         }
-        echo "</div>";
-        echo "</a>";
+      } else {
+        echo "<p>Aucun meilleur produit trouvé</p>";
+      }
       ?>
     </div>
+  </div>
 
-    <div class="product-container">
-      <h2>Nouveaux Produits</h2>
+  <div class="product-container">
+    <div id="new-products" class="product" style="display: none;">
       <?php
       $newVelos = $velosControl->getNewVelos();
 
-      echo "<div class='product'>";
       if (count($newVelos) > 0) {
         foreach ($newVelos as $velo) {
           echo "<a href='velo?id_velo=" . $velo['id_velo'] . "' class='product-link'>";
           echo "<div class='product-card'>";
           if (!empty($velo['URL'])) {
-                echo "<div class='img'>";
-                  echo "<img src='" . htmlspecialchars($velo['URL']) . "' alt='" . htmlspecialchars($velo['alt']) . "'>";
-                echo "</div>";
-              }
-              echo "<div class='product-text'>";
-                echo "<div>";
-                  echo "<p>" . htmlspecialchars($velo['modele']) . "</p>";
-                  echo "<p>" . htmlspecialchars($velo['prix_par_jour']) . "€ / J</p>";
-                echo "</div>";
-                echo "<p>" . htmlspecialchars(shortenDescription($velo['description_velo'])) . "</p>";
-              echo "</div>";
+            echo "<div class='img'>";
+            echo "<img src='" . htmlspecialchars($velo['URL']) . "' alt='" . htmlspecialchars($velo['alt']) . "'>";
             echo "</div>";
           }
-        } else {
-          echo "<p>Aucun nouveau produit trouvé</p>";
+          echo "<div class='product-text'>";
+          echo "<div>";
+          echo "<p>" . htmlspecialchars($velo['modele']) . "</p>";
+          echo "<p>" . htmlspecialchars($velo['prix_par_jour']) . "€ / J</p>";
+          echo "</div>";
+          echo "<p>" . htmlspecialchars(shortenDescription($velo['description_velo'])) . "</p>";
+          echo "</div>";
+          echo "</div>";
+          echo "</a>";
         }
-        echo "</div>";
-        echo "</a>";
+      } else {
+        echo "<p>Aucun nouveau produit trouvé</p>";
+      }
       ?>
     </div>
-    </section>
+  </div>
+</section>
 
 
     <section class="categorie-container">
@@ -156,6 +161,33 @@ header("Pragma: no-cache");
         echo "</div>";
     ?>
   </section>
+  
+  <div class="ecology-container">
+        <div class="main-section">
+            <div class="section">
+                <h3>Sauver la planète</h3>
+            </div>
+            <div class="content">
+                <svg viewBox="0 0 1440 4096" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g class="backers">
+                        <path d="M-3317 96H387c276.142 0 500 223.858 500 500v1064.51c0 99.41-80.589 180-180 180H434.99c-99.412 0-180.001 80.58-180.001 180V4248" stroke="red" stroke-width="100" stroke-linecap="round"/>
+                        <path d="M4379 804H1387c-276.14 0-499.997 223.86-499.997 500v356.51c0 99.41-80.589 180-180 180H434.991c-99.411 0-180 80.59-180 180V4248" stroke="red" stroke-width="100" stroke-linecap="round"/>
+                        <path d="M4423 96H1387.02c-276.14 0-500.001 223.858-500.001 500.001V1660.51c0 99.41-80.589 180-180 180H434.995c-99.411 0-180 80.59-180 180l.001 2227.49" stroke="red" stroke-width="100" stroke-linecap="round"/>
+                    </g>
+                    <g class="fillers">
+                        <path d="M-3317 96H387c276.142 0 500 223.858 500 500v1064.51c0 99.41-80.589 180-180 180H434.99c-99.412 0-180.001 80.58-180.001 180V4248" stroke="red" stroke-width="100" stroke-linecap="round"/>
+                        <path d="M4379 804H1387c-276.14 0-499.997 223.86-499.997 500v356.51c0 99.41-80.589 180-180 180H434.991c-99.411 0-180 80.59-180 180V4248" stroke="red" stroke-width="100" stroke-linecap="round"/>
+                        <path d="M4423 96H1387.02c-276.14 0-500.001 223.858-500.001 500.001V1660.51c0 99.41-80.589 180-180 180H434.995c-99.411 0-180 80.59-180 180l.001 2227.49" stroke="red" stroke-width="100" stroke-linecap="round"/>
+                    </g>
+                </svg>
+                <div class="section"><span>Faire du vélo</span></div>
+                <div class="section"><span>Réduire les émissions</span></div>
+                <div class="section"><span>Vivre plus sainement</span></div>
+                <div class="section"><span>Protéger la nature</span></div>
+            </div>
+        </div>
+    </div>
+
 
   
   </main>
@@ -270,24 +302,55 @@ runSplit();
 gsap.registerPlugin(ScrollTrigger);
 
 // Create staggered animation
-function createAnimation() {
-let words = document.querySelectorAll(".word");
+  function createAnimation() {
+  let words = document.querySelectorAll(".word");
 
-let tl = gsap.timeline({
-  scrollTrigger: {
-    trigger: ".split-word",
-    start: "top center",
-    end: "bottom center",
-    scrub: 1
+  let tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".split-word",
+      start: "top 80%",
+      end: "bottom center",
+      scrub: 1
+    }
+  });
+
+  tl.to(words, {
+    opacity: 1,
+    duration: 1,
+    stagger: 0.5
+  });
   }
-});
 
-tl.to(words, {
-  opacity: 1,
-  duration: 1,
-  stagger: 0.5
-});
-}
+
+
+function showBestProducts() {
+    document.getElementById("best-products").style.display = "flex";
+    document.getElementById("new-products").style.display = "none";
+    document.getElementById("newButton").classList.remove("active");
+    document.getElementById("bestButton").classList.add("active");
+  }
+
+  function showNewProducts() {
+    document.getElementById("best-products").style.display = "none";
+    document.getElementById("new-products").style.display = "flex";
+    document.getElementById("bestButton").classList.remove("active");
+    document.getElementById("newButton").classList.add("active");
+  }
+
+  showNewProducts();
+
+
+
+  gsap.to('.content', {
+    scrollTrigger: {
+      trigger: '.custom-container',
+      scrub: 0.5,
+      start: "top 70%",
+      end: "bottom top",
+    },
+    scale: 1
+  })
+
   </script>
 </body>
 </html>
