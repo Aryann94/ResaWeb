@@ -42,11 +42,11 @@ header("Pragma: no-cache");
 ?>
 
   <main>
-  <section class="hero" style="position: relative; transform: translateY(-300px); padding-left: 90px;">
-    <spline-viewer url="https://prod.spline.design/D9km3KuSiVg5jNeH/scene.splinecode"></spline-viewer>
-    <div style="position: absolute; top: 95%; right: 0; width: 160px; height: 100px; background-color: #242A28; z-index: 9999999;"></div>
-    <div style="position: absolute; top: 48%; left: 50%;  transform: translate(-50%, -50%); width: 310px; height: 310px; background: radial-gradient(circle, #22E49F, #6DA0C1); filter: blur(250px); z-index: -3;"></div>
-    <img src="public/images/SwiftText.svg" style="position: absolute; top: 48%; left: 50%;  transform: translate(-50%, -50%); z-index: -2;" />
+  <section class="hero" style="position: relative;">
+    <spline-viewer style="transform: translateY(-100px); padding-left: 100px;" url="https://prod.spline.design/D9km3KuSiVg5jNeH/scene.splinecode"></spline-viewer>
+    <div style="position: absolute; top: 88%; right: 0; width: 160px; height: 100px; background-color: #242A28; z-index: 9999999;"></div>
+    <div style="position: absolute; top: 40%; left: 50%;  transform: translate(-50%, -50%); width: 310px; height: 310px; background: radial-gradient(circle, #22E49F, #6DA0C1); filter: blur(250px); z-index: -3;"></div>
+    <img src="public/images/SwiftText.svg" style="position: absolute; top: 40%; left: 50%;  transform: translate(-50%, -50%); z-index: -2;" />
     <h1 style="position: absolute; top: 75%; left: 50%;  transform: translate(-50%, -50%); font-size: 3.813rem;"> Roulez vite, Roulez bien.</h1>
     <p style="position: absolute; top: 82%; left: 50%;  transform: translate(-50%, -50%);">Explorez la Ville en toute Facilité avec nos Vélos Fiables et Écologiques.</p>
     <a style="position: absolute; top: 90%; left: 50%;  transform: translate(-50%, -50%);background-color: #22E49F; color: black; padding: 16px 32px; text-transform: uppercase; text-decoration: none; font-weight: 700; border-radius: 12px;" href="">Découvrez Nos Modèles</a>
@@ -193,163 +193,143 @@ header("Pragma: no-cache");
   </main>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
   <script>
-    // Fonction pour trier les vélos en JavaScript
-function sortVelos(order) {
-  const veloList = document.getElementById('velo-list');
-  const velos = Array.from(veloList.getElementsByClassName('product-card'));
+    const wrapper = document.getElementById("tiles");
+    const categorieContainer = document.querySelector(".categorie-container");
+    const tileWidth = 200;
+    const tileHeight = 200;
 
-  velos.sort((a, b) => {
-      const priceA = parseFloat(a.getAttribute('data-price'));
-      const priceB = parseFloat(b.getAttribute('data-price'));
+    // Calculer le nombre de colonnes et de lignes en fonction de la taille de la .categorie-container
+    let columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
+    let rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
 
-      if (order === 'asc') {
-          return priceA - priceB;
-      } else {
-          return priceB - priceA;
-      }
-  });
+    const colors = [
+    "hsl(159, 27%, 16%)",
+    "hsl(158, 27%, 16%)",
+    "hsl(159, 78%, 11%)",
+    "hsl(156, 6%, 10%)"
+    ];
 
-  velos.forEach(velo => veloList.appendChild(velo));
-}
+    let count = -1;
 
+    const handleOnClick = index => {
+    count = count + 1;
 
-const wrapper = document.getElementById("tiles");
-const categorieContainer = document.querySelector(".categorie-container");
-const tileWidth = 200;
-const tileHeight = 200;
-
-// Calculer le nombre de colonnes et de lignes en fonction de la taille de la .categorie-container
-let columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
-let rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
-
-const colors = [
-"hsl(159, 27%, 16%)",
-"hsl(158, 27%, 16%)",
-"hsl(159, 78%, 11%)",
-"hsl(156, 6%, 10%)"
-];
-
-let count = -1;
-
-const handleOnClick = index => {
-count = count + 1;
-
-anime({
-targets: ".tile",
-backgroundColor: colors[count % (colors.length - 1)],
-delay: anime.stagger(50, {
-  grid: [columns, rows],
-  from: index
-})
-})
-}
-
-const createTile = (index) => {
-const tile = document.createElement("div");
-tile.classList.add("tile");
-tile.onclick = e => handleOnClick(index);
-return tile;
-}
-
-const createTiles = () => {
-for (let i = 0; i < columns * rows; i++) {
-    wrapper.appendChild(createTile(i));
-}
-}
-
-const createGrid = () => {
-// Nettoyer le contenu existant de la grille
-wrapper.innerHTML = "";
-
-// Mettre à jour le nombre de colonnes et de lignes en fonction de la taille de .categorie-container
-columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
-rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
-
-// Définir les propriétés de la grille CSS personnalisées
-wrapper.style.setProperty("--columns", columns);
-wrapper.style.setProperty("--rows", rows);
-
-// Créer les tuiles dans la grille mise à jour
-createTiles();
-}
-
-// Appeler createGrid une fois pour créer la grille initiale
-createGrid();
-
-// Appeler createGrid à nouveau lors du redimensionnement de la fenêtre pour mettre à jour la grille en conséquence
-window.addEventListener("resize", createGrid);
-
-// Déclencher les clics de manière aléatoire à des intervalles réguliers
-setInterval(() => {
-const randomIndex = Math.floor(Math.random() * (columns * rows));
-handleOnClick(randomIndex);
-}, 2000); // Changement de tuile toutes les 2 secondes (2000 millisecondes)
-
-
-let typeSplit;
-
-// Split the text up
-function runSplit() {
-typeSplit = new SplitType(".split-word", {
-  types: "words" // Split the text into words
-});
-createAnimation();
-}
-
-runSplit();
-
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
-
-// Create staggered animation
-  function createAnimation() {
-  let words = document.querySelectorAll(".word");
-
-  let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".split-word",
-      start: "top 80%",
-      end: "bottom center",
-      scrub: 1
+    anime({
+    targets: ".tile",
+    backgroundColor: colors[count % (colors.length - 1)],
+    delay: anime.stagger(50, {
+      grid: [columns, rows],
+      from: index
+    })
+    })
     }
-  });
 
-  tl.to(words, {
-    opacity: 1,
-    duration: 1,
-    stagger: 0.5
-  });
-  }
+    const createTile = (index) => {
+    const tile = document.createElement("div");
+    tile.classList.add("tile");
+    tile.onclick = e => handleOnClick(index);
+    return tile;
+    }
+
+    const createTiles = () => {
+    for (let i = 0; i < columns * rows; i++) {
+        wrapper.appendChild(createTile(i));
+    }
+    }
+
+    const createGrid = () => {
+    // Nettoyer le contenu existant de la grille
+    wrapper.innerHTML = "";
+
+    // Mettre à jour le nombre de colonnes et de lignes en fonction de la taille de .categorie-container
+    columns = Math.floor(categorieContainer.offsetWidth / tileWidth);
+    rows = Math.floor(categorieContainer.offsetHeight / tileHeight);
+
+    // Définir les propriétés de la grille CSS personnalisées
+    wrapper.style.setProperty("--columns", columns);
+    wrapper.style.setProperty("--rows", rows);
+
+    // Créer les tuiles dans la grille mise à jour
+    createTiles();
+    }
+
+    // Appeler createGrid une fois pour créer la grille initiale
+    createGrid();
+
+    // Appeler createGrid à nouveau lors du redimensionnement de la fenêtre pour mettre à jour la grille en conséquence
+    window.addEventListener("resize", createGrid);
+
+    // Déclencher les clics de manière aléatoire à des intervalles réguliers
+    setInterval(() => {
+    const randomIndex = Math.floor(Math.random() * (columns * rows));
+    handleOnClick(randomIndex);
+    }, 2000); // Changement de tuile toutes les 2 secondes (2000 millisecondes)
+
+
+    let typeSplit;
+
+    // Split the text up
+    function runSplit() {
+    typeSplit = new SplitType(".split-word", {
+      types: "words" // Split the text into words
+    });
+    createAnimation();
+    }
+
+    runSplit();
+
+    // Register GSAP plugins
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Create staggered animation
+      function createAnimation() {
+      let words = document.querySelectorAll(".word");
+
+      let tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".split-word",
+          start: "top 80%",
+          end: "bottom center",
+          scrub: 1
+        }
+      });
+
+      tl.to(words, {
+        opacity: 1,
+        duration: 1,
+        stagger: 0.5
+      });
+      }
 
 
 
-function showBestProducts() {
-    document.getElementById("best-products").style.display = "flex";
-    document.getElementById("new-products").style.display = "none";
-    document.getElementById("newButton").classList.remove("active");
-    document.getElementById("bestButton").classList.add("active");
-  }
+    function showBestProducts() {
+        document.getElementById("best-products").style.display = "flex";
+        document.getElementById("new-products").style.display = "none";
+        document.getElementById("newButton").classList.remove("active");
+        document.getElementById("bestButton").classList.add("active");
+      }
 
-  function showNewProducts() {
-    document.getElementById("best-products").style.display = "none";
-    document.getElementById("new-products").style.display = "flex";
-    document.getElementById("bestButton").classList.remove("active");
-    document.getElementById("newButton").classList.add("active");
-  }
+      function showNewProducts() {
+        document.getElementById("best-products").style.display = "none";
+        document.getElementById("new-products").style.display = "flex";
+        document.getElementById("bestButton").classList.remove("active");
+        document.getElementById("newButton").classList.add("active");
+      }
 
-  showNewProducts();
+      showNewProducts();
 
 
 
-  gsap.to('.content', {
-    scrollTrigger: {
-      trigger: '.custom-container',
-      scrub: 0.5,
-      start: "top 70%",
-      end: "bottom top",
-    },
-    scale: 1
-  })
+      gsap.to('.content', {
+        scrollTrigger: {
+          trigger: '.custom-container',
+          scrub: 0.5,
+          start: "top 70%",
+          end: "bottom top",
+        },
+        scale: 1
+      })
 
   </script>
 </body>

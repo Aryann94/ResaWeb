@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil - Swift</title>
   <link rel="stylesheet" href="public/css/main.css">
-  <link rel="stylesheet" href="public/css/index.css">
+  <!-- <link rel="stylesheet" href="public/css/index.css"> -->
+  <link rel="stylesheet" href="public/css/catalogue.css">
   <script src="https://kit.fontawesome.com/98633f0b27.js" crossorigin="anonymous"></script>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,401,500,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,7 +23,7 @@
     </nav>
 
     <div class="nav-logo">
-      <a href=""><img src="public/images/logo.svg" alt=""></a>
+      <a href="/resaweb/index"><img src="public/images/logo.svg" alt=""></a>
     </div>
 
     <div class="nav-buttons">

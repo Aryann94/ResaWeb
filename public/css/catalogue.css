@@ -1,12 +1,17 @@
-.product_container {
-  margin: 200px 0;
+.product-container {
+  margin: 100px 0;
   width: 100%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .product-container .product {
-  display: flex;
-  gap: 2rem;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1600px;
 }
 
 .product-container .product a {
@@ -67,4 +72,142 @@
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
+}
+
+
+.search-form {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 50%;
+  margin-bottom: 2rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  min-width: 300px;
+  height: 100%;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 1rem;
+}
+
+.search-bar button {
+  background-color: #333D39;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.search-bar button i {
+  color: #ffffff;
+}
+
+.search-form select,
+.search-form .search[type="submit"] {
+  padding: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  height: 100%;
+}
+
+.search-form .search[type="submit"] {
+  background-color: #333D39;
+  color: #ffffff;
+}
+
+
+
+
+.filter-sort-button {
+  position: relative;
+  display: inline-block;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 8px 16px;
+  min-width: fit-content;
+}
+
+#filter-sort-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  color: white;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #333D39;
+  min-width: 460px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  padding: 2rem;
+  border-radius: 12px;
+  border: 1px solid white;
+  z-index: 1;
+}
+
+.filter-sort-button:hover .dropdown-content {
+  display: block;
+}
+
+#sort-select, #categorie-select {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+#sort-select:hover, #categorie-select:hover {
+  background-color: #eaeaea;
+}
+
+/* Style général pour les options */
+select#sort-select option, select#categorie-select option{
+  background-color: #333D39;
+  color: white;
+  font-family: 'Satoshi', sans-serif;
+  font-size: 1rem;
+  padding: 1rem;
+}
+/* Style pour les options au survol */
+select#sort-select option:hover, select#categorie-select option:hover {
+  background-color: #22E49F;
+  color: black;
+}
+
+/* Style pour les options sélectionnées */
+select#sort-select option:checked, select#categorie-select :checked {
+  background-color: #22E49F;
+  color: black;
+}
+
+
+
+.search-form .apply[type="submit"] {
+  background-color: #22E49F; 
+  color: black; 
+  padding: 16px 32px; 
+  text-transform: uppercase; 
+  font-weight: 700; 
+  border-radius: 12px;
+  margin-top: 1rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+}
+
+.show {
+  display: block;
 }
