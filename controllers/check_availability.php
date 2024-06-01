@@ -23,18 +23,18 @@ class AvalibabilityController{
         $this->avalibabilityModel = new AvailabilityModel();
     }
 
-    function checkInclusionAvailability(){
-        return $this->avalibabilityModel->checkInclusionAvailability($this->velo_id, $this->requested_date, $this->requested_time);
+    function checkExclusionAvailability(){
+        return $this->avalibabilityModel->checkExclusionAvailability($this->velo_id, $this->requested_date, $this->requested_time);
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $velo_id = $_POST['velo_id'] ?? '';
-    $requested_date = $_POST['start'] ?? '';
-    $requested_time = $_POST['end'] ?? '';
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    $velo_id = $_GET['velo_id'] ?? '';
+    $requested_date = $_GET['start'] ?? '';
+    $requested_time = $_GET['end'] ?? '';
 
     $avalibabilityController = new AvalibabilityController($velo_id, $requested_date, $requested_time);
-    $response = $avalibabilityController->checkInclusionAvailability();
+    $response = $avalibabilityController->checkExclusionAvailability();
     
     header('Content-Type: application/json');
     echo json_encode($response);

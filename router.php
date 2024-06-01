@@ -15,7 +15,8 @@ $allowedPages = [
     "velo" => "view:velo",
     "panier" => "view:panier",
     "check_availability" => "controller:check_availability",
-    "catalogue" => "view:catalogue"
+    "catalogue" => "view:catalogue",
+    "reservation" => "view:reservation"
 ];
 
 function showView($view)

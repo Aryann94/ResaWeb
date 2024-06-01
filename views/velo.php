@@ -1,8 +1,3 @@
-<?php
-$current_page = 'index';
-
-include 'header.php';
-?>
 
 <?php
 
@@ -10,9 +5,7 @@ include 'header.php';
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
-?>
 
-<?php
 // Inclure le fichier VelosController.php
 require_once '../controllers/VelosController.php';
 
@@ -25,6 +18,10 @@ $velosControl = new VelosController();
 
 // Récupérer les détails du vélo
 $veloDetails = $velosControl->getVeloDetails($id_velo);
+
+$current_page = '';
+$title_page = $veloDetails['modele'];
+include 'header.php';
 
 // Afficher les détails du vélo
 if (!empty($veloDetails['URL'])) {
@@ -45,6 +42,8 @@ if ($veloDetails['nouveau_produit'] == 1) {
 if ($veloDetails['meilleur_produit'] == 1) {
     echo "<p>Meilleur produit</p>";
 }
+
+
 ?>
 
 <!-- Date and Time Picker -->
@@ -83,7 +82,7 @@ if ($veloDetails['meilleur_produit'] == 1) {
 
             $.ajax({
                 url: '/resaweb/check_availability',
-                method: 'POST',
+                method: 'GET',
                 data: {
                     velo_id: addToBucketButton.getAttribute('data-id'),
                     start: startDateTime,
@@ -103,17 +102,27 @@ if ($veloDetails['meilleur_produit'] == 1) {
 
         if (addToBucketButton) {
             addToBucketButton.addEventListener('click', function() {
+
                 const veloId = this.getAttribute('data-id');
+                const startDate = document.getElementById('start_date').value;
+                const startTime = document.getElementById('start_time').value;
+                const endDate = document.getElementById('end_date').value;
+                const endTime = document.getElementById('end_time').value;
+
                 const veloDetails = {
                     id: veloId,
                     modele: "<?php echo htmlspecialchars($veloDetails['modele']); ?>",
                     prix: "<?php echo htmlspecialchars($veloDetails['prix_par_jour']); ?>",
                     description: "<?php echo htmlspecialchars($veloDetails['description_velo']); ?>",
-                    quantity: 1 // Default to 1, or fetch the actual quantity if needed
+                    quantity: 1,
+                    start_date: startDate,
+                    start_time: startTime,
+                    end_date: endDate,
+                    end_time: endTime
                 };
 
                 let bucket = JSON.parse(localStorage.getItem('bucket')) || [];
-                const existingItemIndex = bucket.findIndex(item => item.id === veloId);
+                const existingItemIndex = bucket.findIndex(item => item.id === veloId && item.start_date === startDate && item.end_date === endDate);
                 if (existingItemIndex > -1) {
                     bucket[existingItemIndex].quantity += 1;
                 } else {

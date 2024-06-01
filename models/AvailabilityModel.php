@@ -14,13 +14,13 @@ class AvailabilityModel
      * @param string $requested_end
      * @return array
      */
-    public function checkInclusionAvailability($velo_id, $requested_start, $requested_end) {
+    public function checkExclusionAvailability($velo_id, $requested_start, $requested_end) {
         $mysqli = Database::getInstance();
         $sql = "SELECT * FROM planning
                 WHERE velo_id = ?
                 AND (? BETWEEN debut_dispo AND fin_dispo
                 OR ? BETWEEN debut_dispo AND fin_dispo)";
-        
+
         $stmt = $mysqli->prepare($sql);
         if ($stmt === false) {
             throw new Exception("Failed to prepare the SQL statement: " . $mysqli->error);
@@ -40,9 +40,9 @@ class AvailabilityModel
         $response = [];
 
         if (empty($row)) {
-            $response['available'] = false;
-        } else {
             $response['available'] = true;
+        } else {
+            $response['available'] = false;
         }
 
         return $response;
