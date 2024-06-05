@@ -7,59 +7,23 @@
   <link rel="stylesheet" href="public/css/main.css">
   <!-- <link rel="stylesheet" href="public/css/index.css"> -->
   <link rel="stylesheet" href="public/css/<?php echo htmlspecialchars($current_page); ?>.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://kit.fontawesome.com/98633f0b27.js" crossorigin="anonymous"></script>
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,401,500,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/98633f0b27.js" crossorigin="anonymous"></script>
   <script src="public/js/<?php echo htmlspecialchars($current_page); ?>.js" defer></script>
   <script src="public/js/panier.js" defer></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-    const searchBtn = document.getElementById('search-btn');
-    const searchContainer = document.getElementById('search-container');
-    const blurBackground = document.getElementById('blur-background');
-    
-    searchBtn.addEventListener('click', function() {
-      if (searchContainer.classList.contains('show')) {
-        searchContainer.classList.remove('show');
-        setTimeout(() => {
-          searchContainer.style.display = 'none';
-        }, 300); // Correspond à la durée de la transition CSS
-      } else {
-        searchContainer.style.display = 'flex';
-        setTimeout(() => {
-          searchContainer.classList.add('show');
-        }, 10); // Petit délai pour permettre le changement de display avant l'ajout de la classe
-      }
-      
-      if (blurBackground.classList.contains('show')) {
-        blurBackground.classList.remove('show');
-        setTimeout(() => {
-          blurBackground.style.display = 'none';
-        }, 300); // Correspond à la durée de la transition CSS
-      } else {
-        blurBackground.style.display = 'block';
-        setTimeout(() => {
-          blurBackground.classList.add('show');
-        }, 10); // Petit délai pour permettre le changement de display avant l'ajout de la classe
-      }
-    });
-
-    blurBackground.addEventListener('click', function() {
-      searchContainer.classList.remove('show');
-      blurBackground.classList.remove('show');
-      setTimeout(() => {
-        searchContainer.style.display = 'none';
-        blurBackground.style.display = 'none';
-      }, 300); // Correspond à la durée de la transition CSS
-    });
-  });
-</script>
+  <script src="public/js/header.js" defer></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.1/dist/lenis.min.js"></script> 
 </head>
 <body>
+  <div class="loader-container">
+    <div class="loader"></div>
+  </div>
   
   <header class="navbar">
     <nav class="nav-link">

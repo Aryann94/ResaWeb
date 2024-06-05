@@ -31,31 +31,28 @@ header("Pragma: no-cache");
         
 ?>
 <script type="module" src="https://unpkg.com/@splinetool/viewer@1.4.1/build/spline-viewer.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/split-type"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/split-type"></script>
 
 
 
 
   <main>
-  <section class="hero" style="position: relative;">
-    <spline-viewer style="transform: translateY(-100px); padding-left: 100px;" url="https://prod.spline.design/D9km3KuSiVg5jNeH/scene.splinecode"></spline-viewer>
-    <div style="position: absolute; top: 87%; right: 0; width: 160px; height: 100px; background-color: #242A28; z-index: 10;"></div>
-    <div style="position: absolute; top: 40%; left: 50%;  transform: translate(-50%, -50%); width: 310px; height: 310px; background: radial-gradient(circle, #22E49F, #6DA0C1); filter: blur(250px); z-index: -3;"></div>
-    <img src="public/images/SwiftText.svg" style="position: absolute; top: 40%; left: 50%;  transform: translate(-50%, -50%); z-index: -2; user-select: none;" />
-    <h1 style="position: absolute; top: 75%; left: 50%;  transform: translate(-50%, -50%); font-size: 3.813rem;"> Roulez vite, Roulez bien.</h1>
-    <p style="position: absolute; top: 82%; left: 50%;  transform: translate(-50%, -50%);">Explorez la Ville en toute Facilité avec nos Vélos Fiables et Écologiques.</p>
-    <a style="position: absolute; top: 90%; left: 50%;  transform: translate(-50%, -50%);background-color: #22E49F; color: black; padding: 16px 32px; text-transform: uppercase; text-decoration: none; font-weight: 700; border-radius: 12px;" href="">Découvrez Nos Modèles</a>
+  <section class="hero">
+    <spline-viewer url="https://prod.spline.design/D9km3KuSiVg5jNeH/scene.splinecode"></spline-viewer>
+    <div class="hide"></div>
+    <div class="cercle"></div>
+    <img src="public/images/SwiftText.svg"/>
+    <h1> Roulez vite, Roulez bien.</h1>
+    <p>Explorez la Ville en toute Facilité avec nos Vélos Fiables et Écologiques.</p>
+    <a href="">Découvrez Nos Modèles</a>
   </section>
 
-<!-- Your text element here. For example: -->
-<div class="info">
+<section class="info">
   <img src="public/images/logoBig.svg" alt="">
-  <p class="split-word">Découvrez notre passion pour le vélo et notre engagement pour un avenir plus vert. <br>Que vous soyez passionné de VTT, de vélo de route, urbain ou à assistance électrique, Swift a ce qu'il vous faut.</p>
-  <a class="split-word" href="#">en savoir plus &nbsp;&#8250;</a>
-</div>
+  <p class="reveal-type">Découvrez notre passion pour le vélo et notre engagement pour un avenir plus vert. <br>Que vous soyez passionné de VTT, de vélo de route, urbain ou à assistance électrique, Swift a ce qu'il vous faut.</p>
+  <a href="/resaweb/propos" class="reveal-type">en savoir plus &nbsp;&#8250;</a>
+</section>
 
 <section class="main-product">
   <div class="link-container">
@@ -64,7 +61,7 @@ header("Pragma: no-cache");
       <button onclick="showBestProducts()" id="bestButton" class="tab-button">Meilleurs produits</button>
     </div>
     <a href="/resaweb/catalogue"">Voir tout&nbsp;&#8250;</a>
-    </div>
+  </div>
   <div class="product-container">
     <div id="best-products" class="product">
       <?php
@@ -149,7 +146,7 @@ header("Pragma: no-cache");
             echo "<p>" . htmlspecialchars($category['description_categorie']) . "</p>";
             echo "</div>";
             echo "<div class='categorie-img'>";
-            echo "<img src='public/images/" . htmlspecialchars($category['image_categorie']) . ".png' alt='Image de la catégorie'>";
+            echo "<img src='public/images/categorie/" . htmlspecialchars($category['image_categorie']) . ".png' alt='Image de la catégorie'>";
             echo "</div>";
             echo "</a>";
           }

@@ -24,7 +24,7 @@ body {
 }
 
 .navbar {
-  background-color: transparent;
+  background-color: #242A28;
   width: 100%;
   height: 80px;
   display: grid;
@@ -35,7 +35,6 @@ body {
   top: 0;
   left: 0;
   z-index: 1000;
-  background-color: #242A28;
 }
 
 .nav-link {
@@ -107,21 +106,13 @@ body {
 }
 
 
-.fa-magnifying-glass {
-  color: white;
-}
-
-.fa-magnifying-glass:hover {
-  color: #22E49F;
-}
-
-.fa-bag-shopping {
+.fa-magnifying-glass, .fa-bag-shopping {
   color: white;
   transition: color 0.10s ease-in;
 }
 
-.fa-bag-shopping:hover {
-  color: #C6C6C6;
+.fa-magnifying-glass:hover, .fa-bag-shopping:hover {
+  color: #22E49F;
 }
 
 
@@ -192,6 +183,57 @@ body {
   background-color: #22E49F;
   transform: translateX(-5px);
 }
+
+
+
+
+
+
+
+
+
+
+.loader-container {
+  background-color: #242A28;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  display: grid;
+  color: #ffffff;
+  background:
+    linear-gradient(90deg,currentColor 2px,#0000 0 calc(100% - 2px),currentColor 0) center/100% 14px,
+    linear-gradient(0deg, currentColor 2px,#0000 0 calc(100% - 2px),currentColor 0) center/14px 100%,
+    linear-gradient(currentColor 0 0) center/100% 2px,
+    linear-gradient(currentColor 0 0) center/2px 100%;
+  background-repeat: no-repeat;
+  animation: l6 4s infinite linear;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1/1;
+  background: inherit;
+  transform-origin: inherit;
+  animation: inherit;
+}
+
+.loader::after {
+  animation-duration: 2s;
+}
+
+@keyframes l6{
+  100% {transform:rotate(1turn)}
+}
+
+
 
 
 

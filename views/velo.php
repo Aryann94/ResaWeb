@@ -25,14 +25,18 @@ include 'header.php';
 
 // Afficher les détails du vélo
 if (!empty($veloDetails['URL'])) {
-  echo "<img src='" . htmlspecialchars($veloDetails['URL']) . "' alt='" . htmlspecialchars($veloDetails['alt']) . "'>";
+    echo "<div class='img-container'>";
+        echo "<img src='" . htmlspecialchars($veloDetails['URL']) . "' alt='" . htmlspecialchars($veloDetails['alt']) . "'>";
+    echo "</div>";
 }
-echo "<h1>" . htmlspecialchars($veloDetails['modele']) . "</h1>";
-echo "<p>Prix par jour : " . htmlspecialchars($veloDetails['prix_par_jour']) . " €</p>";
-echo "<p>Description : " . htmlspecialchars($veloDetails['description_velo']) . "</p>";
-echo "<p>Taille : " . htmlspecialchars($veloDetails['taille']) . " cm</p>";
-echo "<p>Catégorie : " . htmlspecialchars($veloDetails['nom_categorie']) . "</p>";
-echo "<p>Nombre de vitesses : " . htmlspecialchars($veloDetails['nbr_vitesse']) . "</p>";
+echo "<div class='content'>";
+    echo "<h1>" . htmlspecialchars($veloDetails['modele']) . "</h1>";
+    echo "<p>Prix par jour : " . htmlspecialchars($veloDetails['prix_par_jour']) . " €</p>";
+    echo "<p>Description : " . htmlspecialchars($veloDetails['description_velo']) . "</p>";
+    echo "<p>Taille : " . htmlspecialchars($veloDetails['taille']) . " cm</p>";
+    echo "<p>Catégorie : " . htmlspecialchars($veloDetails['nom_categorie']) . "</p>";
+    echo "<p>Nombre de vitesses : " . htmlspecialchars($veloDetails['nbr_vitesse']) . "</p>";
+echo "</div>";
 
 // Vérifier si le vélo est un nouveau produit ou l'un des meilleurs produits
 if ($veloDetails['nouveau_produit'] == 1) {

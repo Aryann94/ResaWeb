@@ -1,0 +1,50 @@
+.panier {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.panier .content {
+  text-align: left;
+  width: fit-content;
+}
+
+.content h1 {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+.content p {
+  margin:  0.5rem 0 4rem 0;
+}
+
+.content a {
+  background-color: #22E49F; 
+  color: black; 
+  padding: 16px 32px; 
+  text-transform: uppercase; 
+  text-decoration: none; 
+  font-weight: 700; 
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.content a:hover {
+  letter-spacing: 2px;
+  background-color: #2D8263;
+  color: hsl(0, 0%, 100%);
+  box-shadow: #2D8263 0px 7px 29px 0px;
+}
+
+.content a:active {
+  letter-spacing: 2px;
+  background-color: #164433;
+  color: hsl(0, 0%, 100%);
+  box-shadow: #2D8263 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}

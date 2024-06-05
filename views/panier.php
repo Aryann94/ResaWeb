@@ -3,8 +3,6 @@ $current_page = 'panier';
 
 include 'header.php';
 ?>
-
-<h1>Panier</h1>
 <div id="bucketContents"></div>
 
 <script>
@@ -26,9 +24,17 @@ include 'header.php';
 
     function renderBucket() {
       if (bucket.length === 0) {
-        bucketContents.innerHTML = '<p>Votre panier est vide.</p>';
-        updateBucketCount();
-        return;
+          bucketContents.innerHTML = `
+              <div class='panier'>
+                <div class="content">
+                  <h1>Votre panier est vide.</h1>
+                  <p>Vous n'avez pas encore ajouté de vélo à votre panier.</p>
+                  <a href="/resaweb/catalogue">Aller au catalogue</a>
+                </div>
+              </div>
+          `;
+          updateBucketCount();
+          return;
       }
 
       const groupedItems = groupItems(bucket);
