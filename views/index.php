@@ -58,10 +58,11 @@ header("Pragma: no-cache");
   <div class="link-container">
     <div class="btn-container">
       <button onclick="showNewProducts()" id="newButton" class="tab-button active">Nouveautés</button>
-      <button onclick="showBestProducts()" id="bestButton" class="tab-button">Meilleurs produits</button>
+      <button onclick="showBestProducts()" id="bestButton" class="tab-button">Les meilleurs</button>
     </div>
-    <a href="/resaweb/catalogue"">Voir tout&nbsp;&#8250;</a>
+    <a href="/resaweb/catalogue">Voir tout&nbsp;&#8250;</a>
   </div>
+  <button id="prev-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
   <div class="product-container">
     <div id="best-products" class="product">
       <?php
@@ -123,7 +124,9 @@ header("Pragma: no-cache");
       ?>
     </div>
   </div>
+  <button id="next-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
 </section>
+
 
 
     <section class="categorie-container">

@@ -139,6 +139,7 @@ spline-viewer {
 
 .main-product {
   padding: 104px;
+  position: relative;
 }
 
 .product_container {
@@ -150,7 +151,13 @@ spline-viewer {
   display: flex;
   gap: 2rem;
   width: 100%;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* Change to nowrap for slider effect */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+
+.product-container .product::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Webkit browsers */
 }
 
 .product-container .product a {
@@ -166,19 +173,18 @@ spline-viewer {
 .product-card {
   width: 292px;
   height: 358px;
+  object-fit: cover;
 }
-
 
 .product-container .product div:not(.img) {
   background-color: #333D39;
-  border-radius: 12px ;
+  border-radius: 12px;
 }
 
 .product-container .product .product-text {
   padding: 0 12px;
   margin: 0;
 }
-
 
 .product-container .product .product-text div p {
   font-size: 1rem;
@@ -208,7 +214,7 @@ spline-viewer {
   transition: transform 0.3s ease;
 }
 
-.product-text div{
+.product-text div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -260,6 +266,66 @@ spline-viewer {
   background-color: #22E49F;
   color: #242A28;
 }
+
+/* Styles for the slider buttons */
+.slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #242A28;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 0;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.slide-btn:hover {
+  transform: translateY(-50%) scale(1.1);
+  background-color: #2D8263;
+  box-shadow: 0px 7px 29px 0px #2D8263;
+}
+
+#prev-slide {
+  left: 80px;
+}
+
+#prev-slide img{
+  transform: rotate(180deg);
+}
+
+#next-slide {
+  right: 80px;
+}
+
+
+/* Responsive adjustments */
+@media only screen and (max-width: 1023px) {
+  .slide-btn {
+    display: none;
+  }
+
+  .product-container .product {
+    gap: 10px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .product-card {
+    width: 280px;
+    height: 380px;
+  }
+
+}
+
+
+
 
 
 

@@ -16,6 +16,12 @@
   background: #7b7b7b;
 }
 
+::-webkit-scrollbar-button {
+  background-color: #8b8b8b;
+}
+
+
+
 body {
   margin: 0;
   background-color: #242A28;

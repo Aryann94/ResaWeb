@@ -1,0 +1,12 @@
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 500px;
+  background-color: #F1FFFA;
+}
+
+h1 {
+  color: red;
+}

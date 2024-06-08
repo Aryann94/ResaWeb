@@ -10,7 +10,6 @@
 .product-container .product {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
   max-width: 1600px;
 }
 
@@ -27,6 +26,7 @@
 .product-card {
   width: 292px;
   height: 358px;
+  margin: 10px;
 }
 
 
@@ -167,6 +167,7 @@
 .filter-sort-button:hover .dropdown-content {
   display: block;
 }
+
 
 #sort-select, #categorie-select {
   width: 100%;
