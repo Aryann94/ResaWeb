@@ -48,3 +48,7 @@
   transform: translateY(10px);
   transition: 100ms;
 }
+
+.items-container {
+  margin-top: 100px;
+}

@@ -42,10 +42,10 @@ header("Pragma: no-cache");
     <spline-viewer url="https://prod.spline.design/D9km3KuSiVg5jNeH/scene.splinecode"></spline-viewer>
     <div class="hide"></div>
     <div class="cercle"></div>
-    <img src="public/images/SwiftText.svg"/>
+    <img src="public/images/SwiftText.svg" alt=""/>
     <h1> Roulez vite, Roulez bien.</h1>
     <p>Explorez la Ville en toute Facilité avec nos Vélos Fiables et Écologiques.</p>
-    <a href="">Découvrez Nos Modèles</a>
+    <a href="/resaweb/catalogue">Découvrez Nos Modèles</a>
   </section>
 
 <section class="info">
@@ -160,7 +160,7 @@ header("Pragma: no-cache");
     ?>
   </section>
   
-  <div class="ecology-container">
+  <section class="ecology-container">
         <div class="main-section">
             <div class="section">
                 <h3>Sauver la planète</h3>
@@ -184,11 +184,44 @@ header("Pragma: no-cache");
                 <div class="section"><span>Protéger la nature</span></div>
             </div>
         </div>
+    </section>
+
+
+    <section class="cards-container">
+    <div class="card">
+        <div class="card-icon">
+            <i class="fa-solid fa-location-dot" style="color: #000; font-size: 80px;"></i>
+        </div>
+        <div class="card-content">
+            <h2>100 points de location</h2>
+            <p>Découvrez notre réseau de location de vélos avec plus de 100 points stratégiquement répartis pour votre commodité.</p>
+        </div>
     </div>
-
-
-  
+    <div class="card c2">
+        <div class="card-icon">
+        <i class="fa-solid fa-truck" style="color: #000000; font-size: 80px;"></i>
+        </div>
+        <div class="card-content">
+            <h2>Livraison de vos vélos</h2>
+            <p>Profitez de notre service de livraison pratique qui vous apporte les vélos directement à votre porte, sans tracas ni soucis.</p>
+        </div>
+    </div>
+    <div class="card c3">
+        <div class="card-icon">
+        <i class="fa-solid fa-rotate-left" style="color: #000; font-size: 80px;"></i>
+        </div>
+        <div class="card-content">
+            <h2>Annulation gratuite</h2>
+            <p>Avec notre politique d'annulation flexible, vous pouvez réserver en toute confiance, sachant que vous pouvez modifier ou annuler votre réservation sans frais.</p>
+        </div>
+    </div>
+    </div>
+  </section>
   </main>
+
+  <footer>
+    <span>© 2024 Swift - Tous droits réservés.</span>
+  </footer>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
 </body>
 </html>

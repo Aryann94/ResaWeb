@@ -66,6 +66,7 @@ spline-viewer {
   text-decoration: none; 
   font-weight: 700; 
   border-radius: 12px;
+  border: none;
   transition: all 0.3s ease;
 }
 
@@ -621,3 +622,97 @@ spline-viewer {
 
 
 
+
+
+.cards-container {
+  height: 50vh;
+  width: 100%;
+  max-width: 1600px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.card {
+  position: relative;
+  padding: 1rem;
+  width: 350px;
+  height: 450px;
+  box-shadow: -1px 15px 30px -12px rgb(32, 32, 32);
+  border-radius: 0.9rem;
+  background-color: #22E49F;
+  color: black;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 0px 20px rgba(34, 228, 159, 0.8);
+}
+
+.card.c2 {
+  width: 380px;
+  height: 480px;
+}
+
+.card-icon {
+  height: 50%;
+  width: 100%;
+  transform: translate(0, 0);
+  transition: transform 500ms ease-in-out;
+  filter: drop-shadow(5px 10px 15px rgba(255, 255, 255, 0.4));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.card.c2 {
+  filter: drop-shadow(5px 10px 15px rgba(8, 9, 13, 0.4));
+}
+
+
+.card-icon i {
+  font-size: 16rem;
+  user-select: none;
+}
+
+.card-content{
+  text-align: center;
+}
+
+.card:hover .card-icon {
+  transform: translate(-1.5rem, -5rem) rotate(-20deg);
+}
+
+.card.c2:hover .card-icon {
+  transform: translate(0, -5rem) rotate(0);
+}
+
+.card.c3:hover .card-icon {
+  transform: translate(1.5rem, -4.5rem) rotate(40deg);
+}
+
+.card-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.card-content p {
+  margin: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    height: auto;
+  }
+  .cards-container {
+    padding: 2rem 0;
+    width: 100%;
+    flex-direction: column;
+    gap: 3rem;
+  }
+}

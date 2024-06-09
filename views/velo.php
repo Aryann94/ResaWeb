@@ -1,4 +1,3 @@
-
 <?php
 
 // Disable caching
@@ -9,136 +8,208 @@ header("Pragma: no-cache");
 // Inclure le fichier VelosController.php
 require_once '../controllers/VelosController.php';
 
-
-// Récupérer l'ID du vélo depuis l'URL
-$id_velo = isset($_GET['id_velo']) ? $_GET['id_velo'] : null;
+function shortenDescription($description, $maxLength = 25) {
+    if (strlen($description) > $maxLength) {
+        return substr($description, 0, $maxLength) . '...';
+    } else {
+        return $description;
+    }
+}
 
 // Instancier le contrôleur des vélos
 $velosControl = new VelosController();
 
+// Récupérer l'ID du vélo depuis l'URL
+$id_velo = isset($_GET['id_velo']) ? $_GET['id_velo'] : null;
 // Récupérer les détails du vélo
 $veloDetails = $velosControl->getVeloDetails($id_velo);
+$allVelos = $velosControl->getAllVelos();
 
-$current_page = '';
+
+$current_page = 'velo';
 $title_page = $veloDetails['modele'];
 include 'header.php';
 
-// Afficher les détails du vélo
-if (!empty($veloDetails['URL'])) {
-    echo "<div class='img-container'>";
-        echo "<img src='" . htmlspecialchars($veloDetails['URL']) . "' alt='" . htmlspecialchars($veloDetails['alt']) . "'>";
+echo "<main>";
+echo "<section class='velo'>";
+    echo "<div class='other'>";
+    echo "<div class='navigation'>";
+    echo "<span><a href='/resaweb/catalogue'>Catalogue</a></span>";
+    echo "<span> &gt; </span>";
+    echo "<span>" . htmlspecialchars($veloDetails['modele']) . "</span>";
     echo "</div>";
-}
-echo "<div class='content'>";
-    echo "<h1>" . htmlspecialchars($veloDetails['modele']) . "</h1>";
-    echo "<p>Prix par jour : " . htmlspecialchars($veloDetails['prix_par_jour']) . " €</p>";
-    echo "<p>Description : " . htmlspecialchars($veloDetails['description_velo']) . "</p>";
-    echo "<p>Taille : " . htmlspecialchars($veloDetails['taille']) . " cm</p>";
-    echo "<p>Catégorie : " . htmlspecialchars($veloDetails['nom_categorie']) . "</p>";
-    echo "<p>Nombre de vitesses : " . htmlspecialchars($veloDetails['nbr_vitesse']) . "</p>";
-echo "</div>";
+    
+    // Affichage des étiquettes pour les nouveaux produits et les meilleurs produits
+    if ($veloDetails['nouveau_produit'] == 1) {
+        echo "<p class='new'>Nouveau vélo</p>";
+    }
 
-// Vérifier si le vélo est un nouveau produit ou l'un des meilleurs produits
-if ($veloDetails['nouveau_produit'] == 1) {
-    echo "<p>Nouveau produit</p>";
-}
+    if ($veloDetails['meilleur_produit'] == 1) {
+        echo "<p class='best'>Un des meilleurs</p>";
+    }
+    echo "</div>";
 
-if ($veloDetails['meilleur_produit'] == 1) {
-    echo "<p>Meilleur produit</p>";
-}
+        echo "<div class='velo-details'>";
+        if (!empty($veloDetails['URL'])) {
+            echo "<div class='img-container'>";
+            echo "<img src='" . htmlspecialchars($veloDetails['URL']) . "' alt='" . htmlspecialchars($veloDetails['alt']) . "'>";
+            echo "</div>";
+        }
+
+        echo "<div class='content'>";
+        echo "<h1>" . htmlspecialchars($veloDetails['modele']) . "</h1>";
+        echo "<p>" . htmlspecialchars($veloDetails['prix_par_jour']) . " € par jour</p>";
+        echo "<p>" . htmlspecialchars($veloDetails['description_velo']) . "</p>";
+        echo "<h2>Caractéristiques</h2>";
+        echo "<p class='flex-container'><span class='label'>Taille</span><span class='value'>" . htmlspecialchars($veloDetails['taille']) . " cm</span></p>";
+        echo "<p class='flex-container'><span class='label'>Catégorie</span><span class='value'>" . htmlspecialchars($veloDetails['nom_categorie']) . "</span></p>";
+        echo "<p class='flex-container last'><span class='label'>Nombre de vitesses</span><span class='value'>" . htmlspecialchars($veloDetails['nbr_vitesse']) . "</span></p>";
 
 
+        echo "<form class='form-container' action='' method='POST'>";
+        echo "<ul class='info-list'>";
+        echo "<li><i class='fas fa-info-circle'></i> Les réservations sont disponibles de 8h à 17h tous les jours.</li>";
+        echo "</ul>";
+            echo "<div class='form-row'>";
+                echo "<div class='form-date'>";
+                    echo "<label for='start_date'>Date de début</label>";
+                    echo "<input type='date' id='start_date' name='start_date' >";
+                echo "</div>";
+                echo "<div class='form-date'>";
+                    echo "<label for='start_time'>Heure de début</label>";
+                    echo "<input type='time' id='start_time' name='start_time' >";
+                echo "</div>";
+            echo "</div>";
+
+            echo "<div class='form-row'>";
+                echo "<div class='form-date'>";
+                    echo "<label for='end_date'>Date de fin</label>";
+                    echo "<input type='date' id='end_date' name='end_date' >";
+                echo "</div>";
+                echo "<div class='form-date'>";
+                    echo "<label for='end_time'>Heure de fin</label>";
+                    echo "<input type='time' id='end_time' name='end_time' >";
+                echo "</div>";
+            echo "</div>";
+
+            // Boutons de vérification de disponibilité et d'ajout au panier
+            echo "<button id='checkAvailabilityButton'>Vérifier la disponibilité</button>";
+            echo "<button id='addToBucketButton' data-id='" . htmlspecialchars($id_velo) . "' disabled class='tooltip'>Ajouter au Panier<span class='tooltiptext'>Veuillez vérifier la disponibilité avant d'ajouter au panier</span></button>";
+        echo "</form>";
+
+        echo "</div>";
+    echo "</div>"; 
+echo "</section>"; 
 ?>
 
-<!-- Date and Time Picker -->
-<label for="start_date">Date de début:</label>
-<input type="date" id="start_date" name="start_date">
-
-<label for="start_time">Heure de début:</label>
-<input type="time" id="start_time" name="start_time">
-
-<label for="end_date">Date de fin:</label>
-<input type="date" id="end_date" name="end_date">
-<label for="end_time">Heure de fin:</label>
-<input type="time" id="end_time" name="end_time">
-
-<button id="checkAvailabilityButton">Vérifier la disponibilité</button>
-<button id="addToBucketButton" data-id="<?php echo $id_velo; ?>" style="display:none;">Ajouter au Panier</button>
-
-
 <script>
-  $(function() {
-        $("#start_date, #end_date").datepicker({ dateFormat: 'yy-mm-dd' });
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-      const checkAvailabilityButton = document.getElementById('checkAvailabilityButton');
-
-        const addToBucketButton = document.getElementById('addToBucketButton');
-
-        checkAvailabilityButton.addEventListener('click', function() {
-            const startDate = document.getElementById('start_date').value;
-            const startTime = document.getElementById('start_time').value + ":00";
-            const endDate = document.getElementById('end_date').value;
-            const endTime = document.getElementById('end_time').value + ":00";
-
-            const startDateTime = `${startDate} ${startTime}`;
-            const endDateTime = `${endDate} ${endTime}`;
-
-            $.ajax({
-                url: '/resaweb/check_availability',
-                method: 'GET',
-                data: {
-                    velo_id: addToBucketButton.getAttribute('data-id'),
-                    start: startDateTime,
-                    end: endDateTime
-                },
-                success: function(response) {
-                    if (response.available) {
-                        alert('Le vélo est disponible.');
-                        addToBucketButton.style.display = 'block';
-                    } else {
-                        alert('Le vélo n\'est pas disponible.');
-                        addToBucketButton.style.display = 'none';
-                    }
-                }
-            });
-        });
-
-        if (addToBucketButton) {
-            addToBucketButton.addEventListener('click', function() {
-
-                const veloId = this.getAttribute('data-id');
-                const startDate = document.getElementById('start_date').value;
-                const startTime = document.getElementById('start_time').value;
-                const endDate = document.getElementById('end_date').value;
-                const endTime = document.getElementById('end_time').value;
-
-                const veloDetails = {
-                    id: veloId,
-                    modele: "<?php echo htmlspecialchars($veloDetails['modele']); ?>",
-                    prix: "<?php echo htmlspecialchars($veloDetails['prix_par_jour']); ?>",
-                    description: "<?php echo htmlspecialchars($veloDetails['description_velo']); ?>",
-                    quantity: 1,
-                    start_date: startDate,
-                    start_time: startTime,
-                    end_date: endDate,
-                    end_time: endTime
-                };
-
-                let bucket = JSON.parse(localStorage.getItem('bucket')) || [];
-                const existingItemIndex = bucket.findIndex(item => item.id === veloId && item.start_date === startDate && item.end_date === endDate);
-                if (existingItemIndex > -1) {
-                    bucket[existingItemIndex].quantity += 1;
-                } else {
-                    bucket.push(veloDetails);
-                }
-
-                localStorage.setItem('bucket', JSON.stringify(bucket));
-                updateBucketCount();
-            });
-        }
-    });
+    var veloDetailsBis = <?php echo json_encode($veloDetails); ?>;
 </script>
+<section class="cards-container">
+    <div class="card">
+        <div class="card-icon">
+            <i class="fa-solid fa-location-dot" style="color: #000; font-size: 80px;"></i>
+        </div>
+        <div class="card-content">
+            <h2>100 points de location</h2>
+            <p>Découvrez notre réseau de location de vélos avec plus de 100 points stratégiquement répartis pour votre commodité.</p>
+        </div>
+    </div>
+    <div class="card c2">
+        <div class="card-icon">
+        <i class="fa-solid fa-truck" style="color: #000000; font-size: 80px;"></i>
+        </div>
+        <div class="card-content">
+            <h2>Livraison de vos vélos</h2>
+            <p>Profitez de notre service de livraison pratique qui vous apporte les vélos directement à votre porte, sans tracas ni soucis.</p>
+        </div>
+    </div>
+    <div class="card c3">
+        <div class="card-icon">
+        <i class="fa-solid fa-rotate-left" style="color: #000; font-size: 80px;"></i>
+        </div>
+        <div class="card-content">
+            <h2>Annulation gratuite</h2>
+            <p>Avec notre politique d'annulation flexible, vous pouvez réserver en toute confiance, sachant que vous pouvez modifier ou annuler votre réservation sans frais.</p>
+        </div>
+    </div>
+    </div>
+</section>
+
+<section class="main-product">
+  <div class="link-container">
+    <div class="btn-container">
+      <button onclick="showNewProducts()" id="newButton" class="tab-button active">Nouveautés</button>
+      <button onclick="showBestProducts()" id="bestButton" class="tab-button">Les meilleurs</button>
+    </div>
+    <a href="/resaweb/catalogue">Voir tout&nbsp;&#8250;</a>
+  </div>
+  <button id="prev-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
+  <div class="product-container">
+    <div id="best-products" class="product">
+      <?php
+      $bestVelos = $velosControl->getBestVelos();
+
+      if (count($bestVelos) > 0) {
+        foreach ($bestVelos as $velo) {
+          echo "<a href='velo?id_velo=" . $velo['id_velo'] . "' class='product-link'>";
+          echo "<div class='product-card'>";
+          if (!empty($velo['URL'])) {
+            echo "<div class='img'>";
+            echo "<img src='" . htmlspecialchars($velo['URL']) . "' alt='" . htmlspecialchars($velo['alt']) . "'>";
+            echo "</div>";
+          }
+          echo "<div class='product-text'>";
+          echo "<div>";
+          echo "<p>" . htmlspecialchars($velo['modele']) . "</p>";
+          echo "<p>" . htmlspecialchars($velo['prix_par_jour']) . "€ / J</p>";
+          echo "</div>";
+          echo "<p>" . htmlspecialchars(shortenDescription($velo['description_velo'])) . "</p>";
+          echo "</div>";
+          echo "</div>";
+          echo "</a>";
+        }
+      } else {
+        echo "<p>Aucun meilleur produit trouvé</p>";
+      }
+      ?>
+    </div>
+  </div>
+
+  <div class="product-container">
+    <div id="new-products" class="product" style="display: none;">
+      <?php
+      $newVelos = $velosControl->getNewVelos();
+
+      if (count($newVelos) > 0) {
+        foreach ($newVelos as $velo) {
+          echo "<a href='velo?id_velo=" . $velo['id_velo'] . "' class='product-link'>";
+          echo "<div class='product-card'>";
+          if (!empty($velo['URL'])) {
+            echo "<div class='img'>";
+            echo "<img src='" . htmlspecialchars($velo['URL']) . "' alt='" . htmlspecialchars($velo['alt']) . "'>";
+            echo "</div>";
+          }
+          echo "<div class='product-text'>";
+          echo "<div>";
+          echo "<p>" . htmlspecialchars($velo['modele']) . "</p>";
+          echo "<p>" . htmlspecialchars($velo['prix_par_jour']) . "€ / J</p>";
+          echo "</div>";
+          echo "<p>" . htmlspecialchars(shortenDescription($velo['description_velo'])) . "</p>";
+          echo "</div>";
+          echo "</div>";
+          echo "</a>";
+        }
+      } else {
+        echo "<p>Aucun nouveau produit trouvé</p>";
+      }
+      ?>
+    </div>
+  </div>
+  <button id="next-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
+</section>
+</main>
+
 
 </body>
 </html>

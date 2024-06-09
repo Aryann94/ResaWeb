@@ -51,8 +51,6 @@ $allCategories = $categoriesControl->getAllCategories($filter);
                     <option value="asc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'asc') ? 'selected' : ''; ?>>Prix croissant</option>
                     <option value="desc" <?php echo (isset($_GET['sort']) && $_GET['sort'] == 'desc') ? 'selected' : ''; ?>>Prix décroissant</option>
                 </select>
-                
-                <button class="apply" type="submit">Appliquer</button>
             </div>
         </div>
     </form>

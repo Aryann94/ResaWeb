@@ -172,7 +172,7 @@
 #sort-select, #categorie-select {
   width: 100%;
   padding: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
 }
 
 #sort-select:hover, #categorie-select:hover {
@@ -197,24 +197,6 @@ select#sort-select option:hover, select#categorie-select option:hover {
 select#sort-select option:checked, select#categorie-select :checked {
   background-color: #22E49F;
   color: black;
-}
-
-.search-form .apply[type="submit"] {
-  background-color: #22E49F; 
-  color: black; 
-  padding: 16px 32px; 
-  text-transform: uppercase; 
-  font-weight: 700; 
-  border-radius: 12px;
-  margin-top: 1rem;
-  width: 100%;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.search-form .apply[type="submit"]:hover {
-  background-color: #333D39; 
-  color: rgb(255, 255, 255); 
 }
 
 .dropdown-content {

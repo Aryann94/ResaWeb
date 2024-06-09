@@ -38,15 +38,16 @@ include 'header.php';
       }
 
       const groupedItems = groupItems(bucket);
-      let html = '<ul>';
+      let html = '<ul class="items-container">';
 
       groupedItems.forEach(item => {
         html += `<li>
                     <h2>${item.modele} - ${item.prix} €</h2>
                     <p>Description: ${item.description}</p>
                     <p>Quantité: ${item.quantity}</p>
-                    <p>Date de début: ${item.start_date} ${item.start_time}</p>
-                    <p>Date de fin: ${item.end_date} ${item.end_time}</p>
+                    <img src="${item.img}" alt="">
+                    <p>Date de début: <br>${item.start_date} | ${item.start_time}</p>
+                    <p>Date de fin: <br>${item.end_date} | ${item.end_time}</p>
                     <button class="delete-button" data-id="${item.id}">Supprimer</button>
                     <button class="reserve-button" data-id="${item.id}">Réserver</button>
                  </li>`;

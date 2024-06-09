@@ -10,6 +10,9 @@
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,401,500,700&display=swap" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+  <link rel="icon" type="image/x-icon" href="public/images/favicon.ico" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
   <script src="https://kit.fontawesome.com/98633f0b27.js" crossorigin="anonymous"></script>
   <script src="public/js/<?php echo htmlspecialchars($current_page); ?>.js" defer></script>
   <script src="public/js/panier.js" defer></script>
