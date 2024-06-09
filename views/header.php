@@ -21,7 +21,7 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.8.0/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
-  <script src="https://unpkg.com/lenis@1.1.1/dist/lenis.min.js"></script> 
+  <script src="https://unpkg.com/lenis@1.1.1/dist/lenis.min.js"></script> >
 </head>
 <body>
   <div class="loader-container">
@@ -32,7 +32,7 @@
     <nav class="nav-link">
       <a class="<?php echo ($current_page == 'index') ? 'active' : ''; ?>" href="/resaweb/index">Accueil</a>
       <a class="<?php echo ($current_page == 'catalogue') ? 'active' : ''; ?>" href="/resaweb/catalogue">Catalogue</a>
-      <a class="<?php echo ($current_page == 'about') ? 'active' : ''; ?>" href="#">À propos</a>
+      <a class="<?php echo ($current_page == 'propos') ? 'active' : ''; ?>" href="/resaweb/propos"">À propos</a>
     </nav>
 
     <div class="nav-logo">

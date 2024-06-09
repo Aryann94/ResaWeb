@@ -16,7 +16,8 @@ $allowedPages = [
     "panier" => "view:panier",
     "check_availability" => "controller:check_availability",
     "catalogue" => "view:catalogue",
-    "reservation" => "view:reservation"
+    "reservation" => "view:reservation",
+    "propos" => "view:propos"
 ];
 
 function showView($view)
