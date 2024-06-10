@@ -10,7 +10,10 @@ return [
     "DATABASE_USERNAME" => "root",
     "DATABASE_PASSWORD" => "",
 
-
+    // "DATABASE_HOST" => "localhost",
+    // "DATABASE_NAME" => "inc_resaweb",
+    // "DATABASE_USERNAME" => "inc_resaweb",
+    // "DATABASE_PASSWORD" => "inc_resaweb",
     //
     // Session Config
     // =========================================================================

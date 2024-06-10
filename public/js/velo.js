@@ -115,5 +115,62 @@ $(function() {
         $("#start_date, #end_date").datepicker("destroy");
         });
 
+
+        const bestProducts = document.getElementById("best-products");
+        const newProducts = document.getElementById("new-products");
+        const prevSlideButton = document.getElementById("prev-slide");
+        const nextSlideButton = document.getElementById("next-slide");
+
+        let currentProductContainer = bestProducts;
+        let maxScrollLeft;
+
+        const updateMaxScrollLeft = () => {
+            maxScrollLeft = currentProductContainer.scrollWidth - currentProductContainer.clientWidth;
+        };
+
+        const handleSlideButtons = () => {
+            prevSlideButton.style.display = "block";
+            nextSlideButton.style.display = "block";
+        };
+
+        const switchProductContainer = (newContainer) => {
+            currentProductContainer = newContainer;
+            updateMaxScrollLeft();
+            handleSlideButtons();
+        };
+
+        // Slide products based on button clicks
+        prevSlideButton.addEventListener("click", () => {
+            const scrollAmount = -currentProductContainer.clientWidth;
+            currentProductContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        });
+
+        nextSlideButton.addEventListener("click", () => {
+            const scrollAmount = currentProductContainer.clientWidth;
+            currentProductContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
+        });
+
+        // Switch between best and new products
+        window.showBestProducts = () => {
+            document.getElementById("best-products").style.display = "flex";
+            document.getElementById("new-products").style.display = "none";
+            document.getElementById("newButton").classList.remove("active");
+            document.getElementById("bestButton").classList.add("active");
+            switchProductContainer(bestProducts);
+        };
+
+        window.showNewProducts = () => {
+            document.getElementById("best-products").style.display = "none";
+            document.getElementById("new-products").style.display = "flex";
+            document.getElementById("bestButton").classList.remove("active");
+            document.getElementById("newButton").classList.add("active");
+            switchProductContainer(newProducts);
+        };
+
+        // Initial setup
+        updateMaxScrollLeft();
+        handleSlideButtons();
+        showNewProducts();
+        window.addEventListener("resize", updateMaxScrollLeft);
         
-    });
+});

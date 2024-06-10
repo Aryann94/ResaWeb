@@ -34,7 +34,7 @@ echo "<main>";
 echo "<section class='velo'>";
     echo "<div class='other'>";
     echo "<div class='navigation'>";
-    echo "<span><a href='/resaweb/catalogue'>Catalogue</a></span>";
+    echo "<span><a href='./catalogue'>Catalogue</a></span>";
     echo "<span> &gt; </span>";
     echo "<span>" . htmlspecialchars($veloDetails['modele']) . "</span>";
     echo "</div>";
@@ -142,7 +142,7 @@ echo "</section>";
       <button onclick="showNewProducts()" id="newButton" class="tab-button active">Nouveautés</button>
       <button onclick="showBestProducts()" id="bestButton" class="tab-button">Les meilleurs</button>
     </div>
-    <a href="/resaweb/catalogue">Voir tout&nbsp;&#8250;</a>
+    <a href="./catalogue">Voir tout&nbsp;&#8250;</a>
   </div>
   <button id="prev-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
   <div class="product-container">

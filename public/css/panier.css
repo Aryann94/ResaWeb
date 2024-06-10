@@ -7,6 +7,11 @@
   height: 100vh;
 }
 
+a {
+  text-decoration: none;
+  color: white;
+}
+
 .panier .content {
   text-align: left;
   width: fit-content;
@@ -15,7 +20,7 @@
 .content h1 {
   text-transform: uppercase;
   font-size: 2.5rem;
-  margin: 0;
+  margin-top: 0;
 }
 
 .content p {
@@ -51,4 +56,119 @@
 
 .items-container {
   margin-top: 100px;
+}
+
+
+
+.panier-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1920px;
+  margin: 100px auto 0 auto;
+  gap: 6rem;
+}
+
+.title-articile h1 {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  margin-top: 0;
+}
+
+.article-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1000px;
+  border: 1px solid #ffffff;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.article-container h2{
+  margin: 0 0 0.5rem 0;
+}
+
+.article-container .img-container{
+  background-color: #F1FFFA;
+  width: 300px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.article-container .img-container img{
+  width: 100%;
+}
+
+.article-container .article-info {
+  flex-grow: 1;
+  max-width: 680px;
+  justify-content: space-between;
+  display: flex;
+  gap: 2rem;
+}
+
+.article-text .price {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.article-text .description {
+  width: 80%;
+}
+
+.text-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.btn-container .delete-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0 1.5rem;
+}
+
+.total-price {
+  min-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 85px;
+}
+
+.total-price button {
+  background-color: #22E49F; 
+  color: black; 
+  padding: 16px 32px; 
+  text-transform: uppercase; 
+  text-decoration: none; 
+  font-weight: 700; 
+  width: 100%;
+  border-radius: 12px;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.total-price button:hover {
+  letter-spacing: 2px;
+  background-color: #2D8263;
+  color: hsl(0, 0%, 100%);
+  box-shadow: #2D8263 0px 7px 29px 0px;
+}
+
+.total-price button:active {
+  letter-spacing: 2px;
+  background-color: #164433;
+  color: hsl(0, 0%, 100%);
+  box-shadow: #2D8263 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
 }

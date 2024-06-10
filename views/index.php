@@ -45,13 +45,13 @@ header("Pragma: no-cache");
     <img src="public/images/SwiftText.svg" alt=""/>
     <h1> Roulez vite, Roulez bien.</h1>
     <p>Explorez la Ville en toute Facilité avec nos Vélos Fiables et Écologiques.</p>
-    <a href="/resaweb/catalogue">Découvrez Nos Modèles</a>
+    <a href="./catalogue">Découvrez Nos Modèles</a>
   </section>
 
 <section class="info">
   <img src="public/images/logoBig.svg" alt="">
   <p class="reveal-type">Découvrez notre passion pour le vélo et notre engagement pour un avenir plus vert. <br>Que vous soyez passionné de VTT, de vélo de route, urbain ou à assistance électrique, Swift a ce qu'il vous faut.</p>
-  <a href="/resaweb/propos" class="reveal-type">en savoir plus &nbsp;&#8250;</a>
+  <a href="./propos" class="reveal-type">en savoir plus &nbsp;&#8250;</a>
 </section>
 
 <section class="main-product">
@@ -60,7 +60,7 @@ header("Pragma: no-cache");
       <button onclick="showNewProducts()" id="newButton" class="tab-button active">Nouveautés</button>
       <button onclick="showBestProducts()" id="bestButton" class="tab-button">Les meilleurs</button>
     </div>
-    <a href="/resaweb/catalogue">Voir tout&nbsp;&#8250;</a>
+    <a href="./catalogue">Voir tout&nbsp;&#8250;</a>
   </div>
   <button id="prev-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
   <div class="product-container">

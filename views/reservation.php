@@ -1,6 +1,5 @@
 <?php
 $current_page = 'reservation';
-
 include 'header.php';
 require_once '../controllers/ReservationController.php';
 
@@ -16,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 ?>
 
-<div class="resa">
+<div class="container">
   <form class="form-container" action="" method="POST">
-      <h2>Réservez votre Swift</h2> 
+      <h2>Réservez vos Swift</h2> 
       <div class="form-group">
         <input required type="text" placeholder=" " id="last_name" name="user_last_name">
         <label for="last_name">Nom</label>
@@ -31,58 +30,83 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <input required type="email" placeholder=" " id="email" name="user_email">
         <label for="email">Adresse mail</label>
       </div>  
-      <div class="form-row">
-        <div class="form-date">
-          <label for="start_date">Date de début</label>
-          <input type="date" id="start_date" name="start_date" >
-        </div>
-        <div class="form-date">
-          <label for="start_time">Heure de début</label>
-          <input type="time" id="start_time" name="start_time" >
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-date">
-          <label for="end_date">Date de fin</label>
-          <input type="date" id="end_date" name="end_date" >
-        </div>
-        <div class="form-date">
-          <label for="end_time">Heure de fin</label>
-          <input type="time" id="end_time" name="end_time" >
-        </div>
-      </div>
-      <input type="hidden" id="id_velo" name="id_velo" value="">
+      
+      <div id="veloDetailsContainer"></div>
 
       <button class="submit-button" type="submit">Réservez</button>
     </form>
-  </div>
+
+    <div class="order">
+        <h2>Votre commande</h2>
+        <div>
+            <p id="productCount"></p>
+            <p>Livraison Gratuit</p>
+            <h3 id="totalPrice"></h3>
+        </div>
+        <div id="productList"></div>
+    </div>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const reserveItem = JSON.parse(localStorage.getItem('reserveItem'));
-    if (reserveItem) {
-      document.getElementById('start_date').value = reserveItem.start_date;
-      document.getElementById('start_time').value = reserveItem.start_time;
-      document.getElementById('end_date').value = reserveItem.end_date;
-      document.getElementById('end_time').value = reserveItem.end_time;
-      document.getElementById('id_velo').value = reserveItem.id;
+    const reserveItems = JSON.parse(localStorage.getItem('reserveItems')) || [];
+    const veloDetailsContainer = document.getElementById('veloDetailsContainer');
+    const totalPriceElement = document.getElementById('totalPrice');
+    const productList = document.getElementById('productList');
+    const productCountElement = document.getElementById('productCount');
+
+    let totalPrice = 0;
+
+    if (reserveItems.length > 0) {
+      let formHtml = '';
+      let orderHtml = '';
+      reserveItems.forEach(item => {
+        const startDate = new Date(item.start_date);
+        const endDate = new Date(item.end_date);
+        const days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24)) + 1;
+        const itemTotalPrice = item.prix * days * item.quantity;
+        totalPrice += itemTotalPrice;
+
+        formHtml += `
+          <div class="form-group">
+            <input type="hidden" name="velo_ids[]" value="${item.id}">
+            <input type="date" name="start_dates[]" value="${item.start_date}" readonly>
+            <input type="time" name="start_times[]" value="${item.start_time}" readonly>
+            <input type="date" name="end_dates[]" value="${item.end_date}" readonly>
+            <input type="time" name="end_times[]" value="${item.end_time}" readonly>
+          </div>
+        `;
+
+        orderHtml += `
+          <div class="product">
+            <div class="img-container">
+              <img src="${item.img}" alt="${item.modele}">
+            </div>
+            <div>
+                <p>${item.modele} - ${itemTotalPrice} €</p>
+                <p>Quantités : ${item.quantity}</p>
+            </div>
+          </div>
+        `;
+      });
+      veloDetailsContainer.innerHTML = formHtml;
+      productList.innerHTML = orderHtml;
+      productCountElement.innerHTML = `${reserveItems.length} produits`;
+      totalPriceElement.innerHTML = `Prix total de la réservation : ${totalPrice} €`;
     }
+
 
     const successMessage = document.getElementById('success-message');
     if (successMessage) {
-      localStorage.removeItem('reserveItem');
-
-      // Also remove the item from the main bucket
-      let bucket = JSON.parse(localStorage.getItem('bucket')) || [];
-      bucket = bucket.filter(item => item.id !== reserveItem.id);
-      localStorage.setItem('bucket', JSON.stringify(bucket));
-
+      localStorage.removeItem('reserveItems');
+      localStorage.removeItem('bucket');
       setTimeout(function() {
-        window.location.href = '/resaweb/index';
+        window.location.href = './index';
       }, 1000);
     }
   });
 </script>
+
 
 </body>
 </html>
