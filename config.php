@@ -5,11 +5,13 @@ return [
     //
     // data Config
     // =========================================================================
+    // localhost
     "DATABASE_HOST" => "localhost",
     "DATABASE_NAME" => "resa_web",
     "DATABASE_USERNAME" => "root",
     "DATABASE_PASSWORD" => "",
 
+    // o2switch
     // "DATABASE_HOST" => "localhost",
     // "DATABASE_NAME" => "inc_resaweb",
     // "DATABASE_USERNAME" => "inc_resaweb",

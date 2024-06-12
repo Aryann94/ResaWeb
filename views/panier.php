@@ -59,8 +59,8 @@ include 'header.php';
                         <p class="description">${item.description}</p>
                         <div class="text-info">
                         <span>Quantité : ${item.quantity}</span>
-                        <p>Date de début : <br>${item.start_date} | ${item.start_time}</p>
-                        <p>Date de fin : <br>${item.end_date} | ${item.end_time}</p>
+                        <p>Début de réservation : <br>${item.start_date} | ${item.start_time}</p>
+                        <p>Fin de réservation : <br>${item.end_date} | ${item.end_time}</p>
                         </div>
                       </div>
                       <div class="btn-container">

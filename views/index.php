@@ -30,9 +30,9 @@ header("Pragma: no-cache");
 
         
 ?>
-<script type="module" src="https://unpkg.com/@splinetool/viewer@1.4.1/build/spline-viewer.js"></script>
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="https://unpkg.com/split-type"></script>
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.4.1/build/spline-viewer.js" defer></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer></script>
+<script src="https://unpkg.com/split-type" defer></script>
 
 
 
@@ -218,10 +218,7 @@ header("Pragma: no-cache");
     </div>
   </section>
   </main>
-
-  <footer>
-    <span>© 2024 Swift - Tous droits réservés.</span>
-  </footer>
+  <?php include 'footer.php'; ?>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.0.1/lib/anime.min.js"></script>
 </body>
 </html>

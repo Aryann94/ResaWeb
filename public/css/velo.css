@@ -54,7 +54,7 @@
 .content {
   background-color: #333D39;
   width: 40%;
-  height: 60vh;
+  height: fit-content;
   padding: 2rem;
   color: #ffffff;
 }

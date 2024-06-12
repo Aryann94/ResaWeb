@@ -62,6 +62,11 @@
   left: 8px;
 }
 
+.form-container p {
+  margin-top: 4rem;
+  text-align: center;
+}
+
 .submit-button {
   display: block;
   width: 100%;
@@ -75,7 +80,6 @@
   text-transform: uppercase;
   font-weight: 500;
   transition: background-color 0.3s ease, color 0.3s ease;
-  margin-top: 4rem;
   font-weight: 600;
   font-family: 'Satoshi', sans-serif !important;
 }
@@ -138,6 +142,16 @@ input[type="time"] {
   border-radius: 8px;
 }
 
+.order h2 {
+  margin: 0;
+}
+
+.order-info h3{
+  margin: 0 0 1rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ddd;
+}
+
 .product {
   display: flex;
   justify-content: center;
@@ -145,11 +159,6 @@ input[type="time"] {
   margin-bottom: 20px;
   padding-bottom: 20px;
   border-bottom: 1px solid #ddd;
-}
-
-
-.order h2 {
-  margin: 0 0 20px 0;
 }
 
 .img-container {
@@ -164,27 +173,6 @@ input[type="time"] {
 
 .product img {
   width: 100%
-}
-
-.product input {
-  background-color: transparent;
-  color: white;
-  width: fit-content;
-}
-
-.datetime-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.datetime-container input {
-  margin: 0 1rem 0 0;
-}
-
-
-.datetime-container.start {
-    margin: 0 0 1rem 0;
 }
 
 
