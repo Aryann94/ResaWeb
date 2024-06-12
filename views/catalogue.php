@@ -29,11 +29,15 @@ $allCategories = $categoriesControl->getAllCategories($filter);
 <div class="product-container">
     <form class="search-form" method="GET" action="catalogue">
         <div class="search-bar">
-            <input type="text" name="search" placeholder="Rechercher par nom de vélo" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-            <button class="search" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></button>
+            <label class="sr-only" for="search2">Rechercher par nom de vélo</label>
+            <input type="text" id="search2" name="search" placeholder="Rechercher par nom de vélo" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+            <button class="search" type="submit" title="Bouton chercher">
+                <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+            <span class="sr-only">Rechercher</span>
+            </button>
         </div>
         <div class="filter-sort-button">
-            <button id="filter-sort-btn" type="button">
+            <button id="filter-sort-btn" type="button" title="bouton filtrer">
                 <span>Filtrer & Trier</span>
                 <i class="fa-solid fa-sliders" style="color: #ffffff;"></i>
             </button>
@@ -88,5 +92,6 @@ $allCategories = $categoriesControl->getAllCategories($filter);
     ?>
 </div>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>

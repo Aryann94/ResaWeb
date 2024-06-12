@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-  function sortVelos(order) {
+  function sortVelos(order) { //2.b
       const veloList = document.getElementById('velo-list');
       const velos = Array.from(veloList.getElementsByClassName('product-card'));
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
       velos.forEach(velo => veloList.appendChild(velo));
   }
 
-  function filterVelos(categoryId) {
+  function filterVelos(categoryId) { // 2.a
       const veloList = document.getElementById('velo-list');
       const velos = Array.from(veloList.getElementsByClassName('product-card'));
 

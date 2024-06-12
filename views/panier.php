@@ -47,7 +47,7 @@ include 'header.php';
       let html = '<section class="panier-container"><div class="title-articile"><h1>Votre panier</h1>';
 
       groupedItems.forEach(item => {
-        const itemUrl = `/velo?id_velo=${item.id}`;
+        const itemUrl = `./velo?id_velo=${item.id}`;
         html += `<div class="article-container">
                     <div class="img-container">
                       <a href="${itemUrl}"><img src="${item.img}" alt="Vélo ${item.modele}"></a>
@@ -64,14 +64,17 @@ include 'header.php';
                         </div>
                       </div>
                       <div class="btn-container">
-                        <button class="delete-button" data-id="${item.id}"><i class="fa-solid fa-xmark" style="color: #ffffff; font-size: 24px;"></i></button>
+                        <button class="delete-button" title='bouton supprimer' data-id="${item.id}">
+                        <i class="fa-solid fa-xmark" style="color: #ffffff; font-size: 24px;"></i>
+                         <span class="sr-only">Supprimer</span>
+                        </button>
                       </div>
                     </div>
                   </div>`;
       });
 
       html += `</div><section class="total-price">
-      <button id="reserveAllButton">Réserver</button>
+      <button id="reserveAllButton" title='bouton réserver'>Réserver</button>
                  <h2>Prix par jour : ${totalPrice}€</h2>
                </section>`;
       html += '</section>';
@@ -104,5 +107,6 @@ include 'header.php';
   });
 </script>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>

@@ -1,5 +1,5 @@
 body {
-  height: 500vh;
+  height: fit-content;
   margin: 0;
 }
 
@@ -58,4 +58,33 @@ h2 {
   left: 20%;
   white-space: nowrap;
   font-size: 10rem;
+}
+
+@media (width < 2050px) {
+  h2 {
+    font-size: 8rem;
+  }
+}
+
+@media (width < 1690px) {
+  h2 {
+    font-size: 6rem;
+  }
+}
+
+@media (width < 1300px) {
+  h2 {
+    font-size: 4rem;
+  }
+
+  .one h1{
+    font-size: 3rem;
+  }
+}
+
+@media (width < 850px) {
+  h2 {
+    font-size: 3rem;
+    left: 1%;
+  }
 }

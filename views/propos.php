@@ -26,5 +26,6 @@ include 'header.php';
     <h2>Le créateur du site</h2>
   </section>
 
+  <?php include 'footer.php'; ?>
 </body>
 </html>

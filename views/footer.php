@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="footer-logo">
-      <a href="./index"><img src="public/images/logo.svg" alt=""></a>
+      <a href="./index"><img src="public/images/logo.svg" alt="Accueil, logo de Swift"></a>
     </div>
     <div class="footer-link">
       <a class="termes" href="./termes">Mentions legales</a>

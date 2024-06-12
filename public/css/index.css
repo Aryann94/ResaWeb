@@ -139,10 +139,6 @@ spline-viewer {
 
 
 
-
-
-
-
 .main-product {
   padding: 104px;
   position: relative;
@@ -616,7 +612,6 @@ spline-viewer {
 .ecology-container .section span {
   font-size: clamp(2rem, 4vw + 1rem, 4rem);
   color: #22E49F;
-  width: 25%;
   white-space: nowrap;
 }
 
@@ -710,14 +705,147 @@ spline-viewer {
   font-weight: 600;
 }
 
-@media screen and (max-width: 800px) {
-  body {
-    height: auto;
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (width < 2050px) {
+  .info p {
+    font-size: 2rem;
+    min-width: 1600px;
   }
+}
+
+
+
+
+@media screen and (width < 1600px) {
+  .info p {
+    font-size: 1.7rem;
+    min-width: 1400px;
+  }
+}
+
+@media screen and (width < 1400px) {
+  .info p {
+    font-size: 1.5rem;
+    min-width: 1200px;
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (width < 1300px) {
+  .info p {
+    font-size: 1.3rem;
+    min-width: 100%;
+  }
+
+  .info a {
+    font-size: 1.3rem;
+  }
+
+  .hero {
+    height: 100dvh;
+  }
+
+  .hero img {
+    display: none;
+  }
+
+  .categorie-container {
+    height: fit-content;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .categorie-container .categorie {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: fit-content;
+    width: 80%;
+  }
+    .categorie-container .categorie .categorie-card:nth-child(1),
+    .categorie-container .categorie .categorie-card:nth-child(2),
+    .categorie-container .categorie .categorie-card:nth-child(3),
+    .categorie-container .categorie .categorie-card:nth-child(4) {
+      grid-area: auto;
+      width: 100%;
+      height: 400px;
+  }
+
+  #tiles {
+    display: none;
+  }
+
+  .categorie-container .categorie .categorie-card .categorie-text h3 {
+    font-size: 1.5rem;
+  }
+
+  .categorie-container .categorie .categorie-card .categorie-img {
+    width: 30%;
+    min-width: 300px;
+  }
+  .categorie-container .categorie .categorie-card:nth-child(1) .categorie-img, .categorie-container .categorie .categorie-card:nth-child(4) .categorie-img {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 1200px) {
   .cards-container {
     padding: 2rem 0;
     width: 100%;
+    height: fit-content;
     flex-direction: column;
     gap: 3rem;
+  }
+}
+
+@media (width < 1100px) {
+  .hero h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .hero p {
+    text-align: center;
+  }
+
+  .ecology-container .content .section {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 1000px) {
+  spline-viewer {
+    display: none !important;
+  }
+
+  #velo-img {
+    display: inline-block !important;
+    width: 80%;
+  }
+
+  .main-product #next-slide, .main-product #prev-slide {
+      display: none !important;
+  }
+
+
+  .main-product .link-container .btn-container{
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .main-product .link-container a{
+    display: none !important;
   }
 }

@@ -4,11 +4,12 @@
   gap: 10rem;
   width: 80%;
   margin: 100px auto 0 auto;
+  min-height: 100vh;
+  height: auto;
 }
 
 .form-container {
   max-width: 500px;
-  width: 100%;
   height: fit-content;
   padding: 50px 30px;
   background-color: #333D39;
@@ -43,7 +44,7 @@
   left: 12px;
   top: 12px;
   font-size: 14px;
-  color: #777;
+  color: #000000;
   transition: top 0.3s ease, font-size 0.3s ease, color 0.3s ease;
 }
 
@@ -137,7 +138,7 @@ input[type="time"] {
 
 .order {
   width: fit-content;
-  height: fit-content;
+  height: auto;
   padding: 0 20px;
   border-radius: 8px;
 }
@@ -173,6 +174,18 @@ input[type="time"] {
 
 .product img {
   width: 100%
+}
+
+@media (width < 1300px) {
+  .container {
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-container {
+    min-width: 500px;
+  }
 }
 
 

@@ -36,11 +36,14 @@
     </nav>
 
     <div class="nav-logo">
-      <a href="./index"><img src="public/images/logo.svg" alt=""></a>
+      <a href="./index"><img src="public/images/logo.svg" alt="Accueil, logo de Swift"></a>
     </div>
 
     <div class="nav-buttons">
-      <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+      <button id="search-btn" title="bouton rechercher">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <span class="sr-only">Rechercher</span>
+      </button>
       <a href="./panier"><i class="fa-solid fa-bag-shopping"></i><span id="bucketCount">0</span></a>
     </div>
   </header>
@@ -48,7 +51,11 @@
   <div id="blur-background"></div>
   <div class="search-container" id="search-container">
     <form class="search-form-header" method="GET" action="catalogue">
-      <input type="text" name="search" placeholder="Rechercher par nom de vélo" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
-      <button class="search-header" type="submit"><i class="fa-solid fa-magnifying-glass" style="color: #000;"></i></button>
+    <label class="sr-only" for="search">Rechercher par nom de vélo</label>
+    <input type="text" id="search" name="search" placeholder="Rechercher par nom de vélo" value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>">
+      <button class="search-header" type="submit" title="bouton rechercher">
+        <i class="fa-solid fa-magnifying-glass" style="color: #000;"></i>
+        <span class="sr-only">Rechercher</span>
+      </button>
     </form>
   </div>

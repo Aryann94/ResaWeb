@@ -525,20 +525,56 @@ input[type="time"] {
 }
 
 
-/* Responsive adjustments */
-@media only screen and (max-width: 1023px) {
-  .slide-btn {
-    display: none;
+@media screen and (max-width: 1200px) {
+  .cards-container {
+    padding: 2rem 0;
+    width: 100%;
+    height: fit-content;
+    flex-direction: column;
+    gap: 3rem;
   }
 
-  .product-container .product {
-    gap: 10px;
-    scroll-snap-type: x mandatory;
+  .velo .other {
+    width: fit-content;
+    margin: 0 auto;
   }
 
-  .product-card {
-    width: 280px;
-    height: 380px;
+  .velo-details {
+    flex-direction: column;
   }
 
+  .velo-details .img-container {
+    height: 40vh;
+    min-width: 450px;
+  }
+
+  .velo-details .content {
+    min-width: 450px;
+  }
+}
+
+
+@media (max-width: 1000px) {
+  spline-viewer {
+    display: none !important;
+  }
+
+  #velo-img {
+    display: inline-block !important;
+    width: 80%;
+  }
+
+  .main-product #next-slide, .main-product #prev-slide {
+      display: none !important;
+  }
+
+
+  .main-product .link-container .btn-container{
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .main-product .link-container a{
+    display: none !important;
+  }
 }

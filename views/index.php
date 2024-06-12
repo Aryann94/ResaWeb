@@ -40,16 +40,17 @@ header("Pragma: no-cache");
   <main>
   <section class="hero">
     <spline-viewer url="https://prod.spline.design/D9km3KuSiVg5jNeH/scene.splinecode"></spline-viewer>
+    <img id="velo-img" src="public/images/velo3D.png" alt="Image d'un vélo" style="display: none;">
     <div class="hide"></div>
     <div class="cercle"></div>
-    <img src="public/images/SwiftText.svg" alt=""/>
+    <img src="public/images/SwiftText.svg" alt="image d'un texte swift"/>
     <h1> Roulez vite, Roulez bien.</h1>
     <p>Explorez la Ville en toute Facilité avec nos Vélos Fiables et Écologiques.</p>
     <a href="./catalogue">Découvrez Nos Modèles</a>
   </section>
 
 <section class="info">
-  <img src="public/images/logoBig.svg" alt="">
+  <img src="public/images/logoBig.svg" alt="logo de Swift">
   <p class="reveal-type">Découvrez notre passion pour le vélo et notre engagement pour un avenir plus vert. <br>Que vous soyez passionné de VTT, de vélo de route, urbain ou à assistance électrique, Swift a ce qu'il vous faut.</p>
   <a href="./propos" class="reveal-type">en savoir plus &nbsp;&#8250;</a>
 </section>
@@ -57,12 +58,16 @@ header("Pragma: no-cache");
 <section class="main-product">
   <div class="link-container">
     <div class="btn-container">
-      <button onclick="showNewProducts()" id="newButton" class="tab-button active">Nouveautés</button>
-      <button onclick="showBestProducts()" id="bestButton" class="tab-button">Les meilleurs</button>
+      <button onclick="showNewProducts()" id="newButton" class="tab-button active" title="bouton nouveaux vélos">Nouveautés</button>
+      <button onclick="showBestProducts()" id="bestButton" class="tab-button" title="bouton les meilleurs vélos">Les meilleurs</button>
     </div>
     <a href="./catalogue">Voir tout&nbsp;&#8250;</a>
   </div>
-  <button id="prev-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
+  <button id="prev-slide" class="slide-btn" title="bouton précédent slider">
+    <img src="public/images/slide-btn.svg" alt="bouton flèche gauche">
+    <span class="sr-only">Bouton précédent</span>
+  </button>
+
   <div class="product-container">
     <div id="best-products" class="product">
       <?php
@@ -124,7 +129,10 @@ header("Pragma: no-cache");
       ?>
     </div>
   </div>
-  <button id="next-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
+  <button id="next-slide" class="slide-btn" title="bouton suivant slider">
+    <img src="public/images/slide-btn.svg" alt="bouton flèche droite">
+    <span class="sr-only">Bouton Suivant</span>
+  </button>
 </section>
 
 

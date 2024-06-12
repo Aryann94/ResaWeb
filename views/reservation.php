@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <title>Confirmation de reservation</title>
         </head>
         <body>
-            <p>Bonjour $prenom $nom,</p>
+            <p>Bonjour $prenom $nom,</p> 
             <p>Merci pour votre réservation à Swift !</p>
             <p>Voici les détails de votre réservation :</p>
             <ul>";
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div id="veloDetailsContainer"></div>
       <!-- règle 69 -->
       <p>Tous les champs sont obligatoires.</p> 
-      <button class="submit-button" type="submit">Réservez</button>
+      <button class="submit-button" type="submit" title="Bouton réservez">Réservez</button>
     </form>
 
     <div class="order">
@@ -143,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (successMessage) {
         // Afficher une alerte de succès
-        Swal.fire({
+        Swal.fire({ // 1.a
             icon: 'success',
             title: 'Réservation réussie !',
             text: 'Votre réservation a été effectuée avec succès.',
@@ -164,6 +164,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 </script>
 
-
+<?php include 'footer.php'; ?>
 </body>
 </html>

@@ -93,8 +93,8 @@ echo "<section class='velo'>";
             echo "</div>";
 
             // Boutons de vérification de disponibilité et d'ajout au panier
-            echo "<button id='checkAvailabilityButton'>Vérifier la disponibilité</button>";
-            echo "<button id='addToBucketButton' data-id='" . htmlspecialchars($id_velo) . "' disabled class='tooltip'>Ajouter au Panier<span class='tooltiptext'>Veuillez vérifier la disponibilité avant d'ajouter au panier</span></button>";
+            echo "<button id='checkAvailabilityButton' title='bouton Vérifier la disponibilité'>Vérifier la disponibilité</button>";
+            echo "<button id='addToBucketButton' title='bouton Ajouter au panier' data-id='" . htmlspecialchars($id_velo) . "' disabled class='tooltip'>Ajouter au Panier<span class='tooltiptext'>Veuillez vérifier la disponibilité avant d'ajouter au panier</span></button>";
         echo "</form>";
 
         echo "</div>";
@@ -139,12 +139,15 @@ echo "</section>";
 <section class="main-product">
   <div class="link-container">
     <div class="btn-container">
-      <button onclick="showNewProducts()" id="newButton" class="tab-button active">Nouveautés</button>
-      <button onclick="showBestProducts()" id="bestButton" class="tab-button">Les meilleurs</button>
+      <button onclick="showNewProducts()" id="newButton" class="tab-button active" title="bouton nouveaux vélos">Nouveautés</button>
+      <button onclick="showBestProducts()" id="bestButton" class="tab-button" title="bouton les meilleurs vélos">Les meilleurs</button>
     </div>
     <a href="./catalogue">Voir tout&nbsp;&#8250;</a>
   </div>
-  <button id="prev-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
+  <button id="prev-slide" class="slide-btn" title="bouton précédent slider">
+    <img src="public/images/slide-btn.svg" alt="bouton flèche gauche">
+    <span class="sr-only">Bouton précédent</span>
+  </button>
   <div class="product-container">
     <div id="best-products" class="product">
       <?php
@@ -206,10 +209,13 @@ echo "</section>";
       ?>
     </div>
   </div>
-  <button id="next-slide" class="slide-btn"><img src="public/images/slide-btn.svg" alt=""></button>
+  <button id="next-slide" class="slide-btn" title="bouton suivant slider">
+    <img src="public/images/slide-btn.svg" alt="bouton flèche droite">
+    <span class="sr-only">Bouton Suivant</span>
+  </button>
 </section>
 </main>
 
-
+<?php include 'footer.php'; ?>
 </body>
 </html>

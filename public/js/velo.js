@@ -16,7 +16,7 @@ $(function() {
 
             // Validation for time range
             if (!isTimeInRange(startTime) || !isTimeInRange(endTime)) {
-                Swal.fire('Erreur', 'Les réservations doivent être entre 08:00 et 17:00.', 'error');
+                Swal.fire('Erreur', 'Les réservations doivent être entre 08:00 et 17:00.', 'error'); // 1.a
                 return;
             }
 
@@ -33,7 +33,7 @@ $(function() {
                 },
                 success: function(response) {
                     if (response.available) {
-                        Swal.fire('Disponible', 'Le vélo est disponible.', 'success');
+                        Swal.fire('Disponible', 'Le vélo est disponible.', 'success'); // 1.a
                         addToBucketButton.removeAttribute('disabled'); // Activer le bouton
                         addToBucketButton.style.display = 'block'; // Rendre le bouton visible
                         addToBucketButton.style.cursor = 'pointer'; // Changer le curseur
@@ -44,7 +44,7 @@ $(function() {
                             tooltipText.remove(); // Enlever le span de tooltip
                         }
                     } else {
-                        Swal.fire({
+                        Swal.fire({ // 1.a
                             title: 'Indisponible',
                             text: 'Le vélo n\'est pas disponible.',
                             icon: 'error',
@@ -97,7 +97,7 @@ $(function() {
                 localStorage.setItem('bucket', JSON.stringify(bucket));
                 updateBucketCount();
 
-                Swal.fire('Ajouté', 'Le vélo a été ajouté au panier.', 'success');
+                Swal.fire('Ajouté', 'Le vélo a été ajouté au panier.', 'success'); // 1.a
             });
         }
         // Check if time is between 08:00 and 17:00

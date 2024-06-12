@@ -22,6 +22,20 @@
 
 
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+  color: white;
+}
+
+
+
 body {
   margin: 0;
   background-color: #242A28;
@@ -204,6 +218,8 @@ body {
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
   padding: 0 100px;
+  position: relative;
+  z-index: 9999999;
 }
 
 .footer-logo {
@@ -297,8 +313,20 @@ body {
   100% {transform:rotate(1turn)}
 }
 
+@media screen and (max-width: 1000px) {
+  .navbar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .nav-logo {
+    display: none;
+  }
+}
 
-
-
-
-
+@media screen and (max-width: 1000px) {
+  .footer {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-info  {
+    display: none;
+  }
+}
